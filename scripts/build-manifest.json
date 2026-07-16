@@ -1,0 +1,38 @@
+{
+  "targets": [
+    {
+      "type": "collection-event",
+      "description": "AES encryption/decryption pre-request + test scripts, at the collection root",
+      "source": "shared-scripts/decrypt-encrypt.event.json",
+      "collections": [
+        "Onboarding",
+        "Account",
+        "Transfers",
+        "BillsPayment",
+        "Card"
+      ]
+    },
+    {
+      "type": "named-folder",
+      "description": "Existing-user login, embedded at the top of collections that need to authenticate independently. Deliberately excludes Onboarding.postman_collection.json — its 'authentication' folder is the different new-user login variant and must never be overwritten by this target.",
+      "folderName": "authentication",
+      "source": "shared-scripts/existing-user-login.folder.json",
+      "collections": [
+        "Account",
+        "Transfers",
+        "BillsPayment",
+        "Card"
+      ]
+    },
+    {
+      "type": "named-folder",
+      "description": "Fetches and stores senderAccountNumber/senderAccountName/transferCurrency. Appears once per sub-folder in both Transfers (transferv1) and BillsPayment (bills-payment).",
+      "folderName": "accounts retrieve-all",
+      "source": "shared-scripts/accounts-retrieve-all.folder.json",
+      "collections": [
+        "Transfers",
+        "BillsPayment"
+      ]
+    }
+  ]
+}

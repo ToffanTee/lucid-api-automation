@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+
+# Newman / test reports (generated, not source)
+reports/
+newman-report.html
+*.html
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Local-only environment overrides (real credentials, tokens)
+environments/*.local.json

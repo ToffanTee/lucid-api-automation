@@ -1,0 +1,2165 @@
+{
+  "info": {
+    "_postman_id": "72327afc-f61c-46d6-9b9f-9ea1e31a85d6",
+    "name": "Lucid - Account",
+    "description": "Customer account retrieval and transaction history. Includes its own login step (existing user) so it can run independently of the Onboarding & Activation collection.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "authentication",
+              "item": [
+                {
+                  "name": "process",
+                  "item": [
+                    {
+                      "name": "device-registration",
+                      "item": [
+                        {
+                          "name": "init",
+                          "item": [
+                            {
+                              "name": "init device registration",
+                              "event": [
+                                {
+                                  "listen": "test",
+                                  "script": {
+                                    "exec": [
+                                      "// \u2500\u2500 Generate random device & location details for next request \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+                                      "\r",
+                                      "// -- Device ID (simulates a web/mobile device fingerprint) --\r",
+                                      "const deviceSegment = () => Math.random().toString(36).substring(2, 10).toUpperCase();\r",
+                                      "const deviceId      = `${deviceSegment()}-${deviceSegment()}-${deviceSegment()}`;\r",
+                                      "\r",
+                                      "// -- Device Name --\r",
+                                      "const browsers  = ['Chrome', 'Firefox', 'Safari', 'Edge', 'Opera'];\r",
+                                      "const os        = ['Windows 11', 'macOS Ventura', 'Ubuntu 22.04', 'Android 14', 'iOS 17'];\r",
+                                      "const browser   = browsers[Math.floor(Math.random() * browsers.length)];\r",
+                                      "const system    = os[Math.floor(Math.random() * os.length)];\r",
+                                      "const deviceName = `${browser} on ${system}`;\r",
+                                      "\r",
+                                      "// -- Nigerian coordinates (bounding box: lat 4.2\u201313.9, lng 2.7\u201314.7) --\r",
+                                      "const latitude  = (Math.random() * (13.9  - 4.2)  + 4.2 ).toFixed(6);\r",
+                                      "const longitude = (Math.random() * (14.7  - 2.7)  + 2.7 ).toFixed(6);\r",
+                                      "\r",
+                                      "// -- Nigerian ISP IP ranges (realistic private/public ranges) --\r",
+                                      "const ipRanges = [\r",
+                                      "  () => `197.210.${rand(0,255)}.${rand(1,254)}`,   // MTN Nigeria\r",
+                                      "  () => `41.58.${rand(0,255)}.${rand(1,254)}`,      // Airtel Nigeria\r",
+                                      "  () => `105.112.${rand(0,255)}.${rand(1,254)}`,    // Glo Nigeria\r",
+                                      "  () => `197.255.${rand(0,255)}.${rand(1,254)}`,    // 9mobile Nigeria\r",
+                                      "  () => `154.120.${rand(0,255)}.${rand(1,254)}`,    // Spectranet\r",
+                                      "];\r",
+                                      "\r",
+                                      "function rand(min, max) {\r",
+                                      "  return Math.floor(Math.random() * (max - min + 1)) + min;\r",
+                                      "}\r",
+                                      "\r",
+                                      "const ipAddress = ipRanges[Math.floor(Math.random() * ipRanges.length)]();\r",
+                                      "\r",
+                                      "// -- Save to environment --\r",
+                                      "pm.environment.set('deviceId',   deviceId);\r",
+                                      "pm.environment.set('deviceName', deviceName);\r",
+                                      "pm.environment.set('latitude',   latitude);\r",
+                                      "pm.environment.set('longitude',  longitude);\r",
+                                      "pm.environment.set('ipAddress',  ipAddress);\r",
+                                      "\r",
+                                      "// console.log('[Post-response] deviceId   :', deviceId);\r",
+                                      "// console.log('[Post-response] deviceName :', deviceName);\r",
+                                      "// console.log('[Post-response] latitude   :', latitude);\r",
+                                      "// console.log('[Post-response] longitude  :', longitude);\r",
+                                      "// console.log('[Post-response] ipAddress  :', ipAddress);"
+                                    ],
+                                    "type": "text/javascript",
+                                    "packages": {},
+                                    "requests": {}
+                                  }
+                                }
+                              ],
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "*/*"
+                                  },
+                                  {
+                                    "key": "Referer",
+                                    "value": "{{referer}}",
+                                    "type": "text"
+                                  },
+                                  {
+                                    "key": "Referer",
+                                    "value": "{{referer}}",
+                                    "type": "text"
+                                  },
+                                  {
+                                    "key": "Origin",
+                                    "value": "{{origin}}",
+                                    "type": "text"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json",
+                                    "type": "text"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{customer_service_base_url}}/api/v1/authentication/process/device-registration/init?username={{loginUsername}}",
+                                  "host": [
+                                    "{{customer_service_base_url}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "authentication",
+                                    "process",
+                                    "device-registration",
+                                    "init"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "username",
+                                      "value": "{{loginUsername}}"
+                                    }
+                                  ]
+                                },
+                                "description": "This API performs an action for device registration"
+                              },
+                              "response": [
+                                {
+                                  "name": "init device registration",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "*/*"
+                                      },
+                                      {
+                                        "key": "Referer",
+                                        "value": "{{referer}}",
+                                        "type": "text"
+                                      },
+                                      {
+                                        "key": "Referer",
+                                        "value": "{{referer}}",
+                                        "type": "text"
+                                      },
+                                      {
+                                        "key": "Origin",
+                                        "value": "{{origin}}",
+                                        "type": "text"
+                                      },
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json",
+                                        "type": "text"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/authentication/process/device-registration/init?username={{username}}",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "authentication",
+                                        "process",
+                                        "device-registration",
+                                        "init"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "username",
+                                          "value": "{{username}}"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "Text",
+                                  "header": [
+                                    {
+                                      "key": "Server",
+                                      "value": "nginx/1.24.0 (Ubuntu)"
+                                    },
+                                    {
+                                      "key": "Date",
+                                      "value": "Fri, 22 May 2026 18:23:43 GMT"
+                                    },
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    },
+                                    {
+                                      "key": "Content-Length",
+                                      "value": "214"
+                                    },
+                                    {
+                                      "key": "Connection",
+                                      "value": "keep-alive"
+                                    },
+                                    {
+                                      "key": "Access-Control-Allow-Origin",
+                                      "value": "*"
+                                    },
+                                    {
+                                      "key": "Access-Control-Allow-Methods",
+                                      "value": "POST,GET,PUT,DELETE,PATCH,HEAD"
+                                    },
+                                    {
+                                      "key": "Access-Control-Allow-Headers",
+                                      "value": "Content-Type,Access-Control-Allow-Headers,Access-Control-Allow-Origin,Access-Control-Expose-Headers,Content-Disposition,Authorization,Access-Control-Allow-Methods,X-Requested-With,request-id,x-request-encrypted"
+                                    },
+                                    {
+                                      "key": "Access-Control-Expose-Headers",
+                                      "value": "Content-Disposition,response-id,File-type"
+                                    },
+                                    {
+                                      "key": "Access-Control-Allow-Credentials",
+                                      "value": "true"
+                                    },
+                                    {
+                                      "key": "X-Content-Type-Options",
+                                      "value": "nosniff"
+                                    },
+                                    {
+                                      "key": "X-XSS-Protection",
+                                      "value": "0"
+                                    },
+                                    {
+                                      "key": "Cache-Control",
+                                      "value": "no-cache, no-store, max-age=0, must-revalidate"
+                                    },
+                                    {
+                                      "key": "Pragma",
+                                      "value": "no-cache"
+                                    },
+                                    {
+                                      "key": "Expires",
+                                      "value": "0"
+                                    },
+                                    {
+                                      "key": "X-Frame-Options",
+                                      "value": "DENY"
+                                    },
+                                    {
+                                      "key": "response-id",
+                                      "value": "20HWJ426YUNV05ZH7H22KY2P"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "body": "{\n    \"response\": \"89wt+3QsheUNY1QEn/qxR3IcT3HgR55wtSM08u0pUNQ5bui3UMsSKUGnoSu6zZiH/Fiob8Im3mNbGEDNyTbLAnrYQ+V47w0IBQ6pfXToNEOa/z1C+CcTquaCgjOjXI1sD4ZBx2iu/K/5j1tA4oo4mg==\",\n    \"key\": \"GYCOCMUsuvbyv4blCjfKXh1jzyPy\"\n}"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "name": "validation",
+                          "item": [
+                            {
+                              "name": "validate device registration",
+                              "event": [
+                                {
+                                  "listen": "test",
+                                  "script": {
+                                    "exec": [
+                                      "// \u2500\u2500 Extract encypted response data to environment \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+                                      "const plaintext = pm.environment.get('DECRYPTED_RESPONSE');\r",
+                                      "let json;\r",
+                                      "\r",
+                                      "try {\r",
+                                      "    json = JSON.parse(plaintext);\r",
+                                      "} catch (e) {\r",
+                                      "    // console.error('[Test] Could not parse DECRYPTED_RESPONSE:', e.message);\r",
+                                      "    return;\r",
+                                      "}\r",
+                                      "\r",
+                                      "var data = json.data || {};\r",
+                                      "\r",
+                                      "pm.environment.set('deviceRegistrationCode', data.code || '');\r",
+                                      "\r",
+                                      "// console.log('[Test] Data saved to environment.');\r",
+                                      "\r",
+                                      ""
+                                    ],
+                                    "type": "text/javascript",
+                                    "packages": {},
+                                    "requests": {}
+                                  }
+                                }
+                              ],
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "*/*"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json",
+                                    "type": "text"
+                                  },
+                                  {
+                                    "key": "Referer",
+                                    "value": "{{referer}}",
+                                    "type": "text"
+                                  },
+                                  {
+                                    "key": "Origin",
+                                    "value": "{{origin}}",
+                                    "type": "text"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{customer_service_base_url}}/api/v1/authentication/process/device-registration/validation?username={{loginUsername}}&otp={{emailOtp}}",
+                                  "host": [
+                                    "{{customer_service_base_url}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "authentication",
+                                    "process",
+                                    "device-registration",
+                                    "validation"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "username",
+                                      "value": "{{loginUsername}}"
+                                    },
+                                    {
+                                      "key": "otp",
+                                      "value": "{{emailOtp}}"
+                                    }
+                                  ]
+                                },
+                                "description": "This API performs an action for device registration"
+                              },
+                              "response": [
+                                {
+                                  "name": "validate device registration",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "*/*"
+                                      },
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json",
+                                        "type": "text"
+                                      },
+                                      {
+                                        "key": "Referer",
+                                        "value": "{{referer}}",
+                                        "type": "text"
+                                      },
+                                      {
+                                        "key": "Origin",
+                                        "value": "{{origin}}",
+                                        "type": "text"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/authentication/process/device-registration/validation?username={{username}}&otp={{emailOtp}}",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "authentication",
+                                        "process",
+                                        "device-registration",
+                                        "validation"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "username",
+                                          "value": "{{username}}"
+                                        },
+                                        {
+                                          "key": "otp",
+                                          "value": "{{emailOtp}}"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "Text",
+                                  "header": [
+                                    {
+                                      "key": "Server",
+                                      "value": "nginx/1.24.0 (Ubuntu)"
+                                    },
+                                    {
+                                      "key": "Date",
+                                      "value": "Fri, 22 May 2026 18:23:47 GMT"
+                                    },
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    },
+                                    {
+                                      "key": "Content-Length",
+                                      "value": "214"
+                                    },
+                                    {
+                                      "key": "Connection",
+                                      "value": "keep-alive"
+                                    },
+                                    {
+                                      "key": "Access-Control-Allow-Origin",
+                                      "value": "*"
+                                    },
+                                    {
+                                      "key": "Access-Control-Allow-Methods",
+                                      "value": "POST,GET,PUT,DELETE,PATCH,HEAD"
+                                    },
+                                    {
+                                      "key": "Access-Control-Allow-Headers",
+                                      "value": "Content-Type,Access-Control-Allow-Headers,Access-Control-Allow-Origin,Access-Control-Expose-Headers,Content-Disposition,Authorization,Access-Control-Allow-Methods,X-Requested-With,request-id,x-request-encrypted"
+                                    },
+                                    {
+                                      "key": "Access-Control-Expose-Headers",
+                                      "value": "Content-Disposition,response-id,File-type"
+                                    },
+                                    {
+                                      "key": "Access-Control-Allow-Credentials",
+                                      "value": "true"
+                                    },
+                                    {
+                                      "key": "X-Content-Type-Options",
+                                      "value": "nosniff"
+                                    },
+                                    {
+                                      "key": "X-XSS-Protection",
+                                      "value": "0"
+                                    },
+                                    {
+                                      "key": "Cache-Control",
+                                      "value": "no-cache, no-store, max-age=0, must-revalidate"
+                                    },
+                                    {
+                                      "key": "Pragma",
+                                      "value": "no-cache"
+                                    },
+                                    {
+                                      "key": "Expires",
+                                      "value": "0"
+                                    },
+                                    {
+                                      "key": "X-Frame-Options",
+                                      "value": "DENY"
+                                    },
+                                    {
+                                      "key": "response-id",
+                                      "value": "20BTWC26WYEL05M0HJ22A9LD"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "body": "{\n    \"response\": \"M0GsnKSD/Ss54PoELKw1KtmDXQintAIrXqwQTLl2/G5bQc/8oQ/rOJU770qMLjalKZNALAbvbTNbe/HDtfveuORCB/0kv29dnFcJILt8CVENhttq+K8avM5zZZ42N/0t78JUIE5hCjzUutwMXAt/zw==\",\n    \"key\": \"pit99vadofwQLlOSmDmne8WqEwpo\"\n}"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "name": "complete",
+                          "item": [
+                            {
+                              "name": "device registration",
+                              "event": [
+                                {
+                                  "listen": "test",
+                                  "script": {
+                                    "exec": [
+                                      "// \u2500\u2500 Environment Cleanup Script \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+                                      "// Clears all dynamically generated test variables.\r",
+                                      "// Whitelist defines what to keep \u2014 everything else is removed.\r",
+                                      "\r",
+                                      "// const KEEP = new Set([\r",
+                                      "//     // Infrastructure\r",
+                                      "//     'baseUrl',\r",
+                                      "//     'referer',\r",
+                                      "//     'origin',\r",
+                                      "\r",
+                                      "\r",
+                                      "\r",
+                                      "\r",
+                                      "\r",
+                                      "//     // Auth credentials\r",
+                                      "//     'username',\r",
+                                      "//     'password',\r",
+                                      "//     'personalEmail',\r",
+                                      "//     'authenticationType',\r",
+                                      "//     'deviceId',\r",
+                                      "\r",
+                                      "//     // Hardcoded static values\r",
+                                      "//     'country',\r",
+                                      "//     'signUpType',\r",
+                                      "//     'orgCategory',\r",
+                                      "//     'assignedRole',\r",
+                                      "//     'bvnOtp',\r",
+                                      "//     'emailOtp',\r",
+                                      "//     'deviceChannel',\r",
+                                      "//     'bvnFirstName',\r",
+                                      "//     'bvnLastName',\r",
+                                      "//     'bvn',\r",
+                                      "//     'deviceOption'\r",
+                                      "\r",
+                                      "// ]);\r",
+                                      "\r",
+                                      "// const allVariables = pm.environment.toObject();\r",
+                                      "// const cleared = [];\r",
+                                      "// const kept = [];\r",
+                                      "\r",
+                                      "// Object.keys(allVariables).forEach(key => {\r",
+                                      "//     if (KEEP.has(key)) {\r",
+                                      "//         kept.push(key);\r",
+                                      "//     } else {\r",
+                                      "//         pm.environment.unset(key);\r",
+                                      "//         cleared.push(key);\r",
+                                      "//     }\r",
+                                      "// });\r",
+                                      "\r",
+                                      "// console.log('[Cleanup] Variables kept    :', kept.join(', '));\r",
+                                      "// console.log('[Cleanup] Variables cleared :', cleared.join(', '));\r",
+                                      "// console.log(`[Cleanup] Done \u2014 ${cleared.length} variable(s) removed, ${kept.length} kept.`);"
+                                    ],
+                                    "type": "text/javascript",
+                                    "packages": {},
+                                    "requests": {}
+                                  }
+                                }
+                              ],
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "*/*"
+                                  },
+                                  {
+                                    "key": "Referer",
+                                    "value": "{{referer}}",
+                                    "type": "text"
+                                  },
+                                  {
+                                    "key": "Origin",
+                                    "value": "{{origin}}",
+                                    "type": "text"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n    \"deviceId\": \"{{deviceId}}\",\n    \"deviceName\": \"{{deviceName}}\",\n    \"channel\": \"{{deviceChannel}}\",\n    \"longitude\": \"{{longitude}}\",\n    \"latitude\": \"{{latitude}}\",\n    \"ipAddress\": \"{{ipAddress}}\",\n    \"deviceOption\": \"{{deviceOption}}\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{customer_service_base_url}}/api/v1/authentication/process/device-registration/complete?username={{loginUsername}}&code={{deviceRegistrationCode}}",
+                                  "host": [
+                                    "{{customer_service_base_url}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "authentication",
+                                    "process",
+                                    "device-registration",
+                                    "complete"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "username",
+                                      "value": "{{loginUsername}}"
+                                    },
+                                    {
+                                      "key": "code",
+                                      "value": "{{deviceRegistrationCode}}"
+                                    }
+                                  ]
+                                },
+                                "description": "This API performs an action for device registration"
+                              },
+                              "response": [
+                                {
+                                  "name": "device registration",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "*/*"
+                                      },
+                                      {
+                                        "key": "Referer",
+                                        "value": "{{referer}}",
+                                        "type": "text"
+                                      },
+                                      {
+                                        "key": "Origin",
+                                        "value": "{{origin}}",
+                                        "type": "text"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n    \"deviceId\": \"{{deviceId}}\",\n    \"deviceName\": \"{{deviceName}}\",\n    \"channel\": \"{{deviceChannel}}\",\n    \"longitude\": \"{{longitude}}\",\n    \"latitude\": \"{{latitude}}\",\n    \"ipAddress\": \"{{ipAddress}}\",\n    \"deviceOption\": \"{{deviceOption}}\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/authentication/process/device-registration/complete?username={{username}}&code={{deviceRegistrationCode}}",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "authentication",
+                                        "process",
+                                        "device-registration",
+                                        "complete"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "username",
+                                          "value": "{{username}}"
+                                        },
+                                        {
+                                          "key": "code",
+                                          "value": "{{deviceRegistrationCode}}"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "Text",
+                                  "header": [
+                                    {
+                                      "key": "Server",
+                                      "value": "nginx/1.24.0 (Ubuntu)"
+                                    },
+                                    {
+                                      "key": "Date",
+                                      "value": "Fri, 22 May 2026 18:23:51 GMT"
+                                    },
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    },
+                                    {
+                                      "key": "Content-Length",
+                                      "value": "229"
+                                    },
+                                    {
+                                      "key": "Connection",
+                                      "value": "keep-alive"
+                                    },
+                                    {
+                                      "key": "Access-Control-Allow-Origin",
+                                      "value": "*"
+                                    },
+                                    {
+                                      "key": "Access-Control-Allow-Methods",
+                                      "value": "POST,GET,PUT,DELETE,PATCH,HEAD"
+                                    },
+                                    {
+                                      "key": "Access-Control-Allow-Headers",
+                                      "value": "Content-Type,Access-Control-Allow-Headers,Access-Control-Allow-Origin,Access-Control-Expose-Headers,Content-Disposition,Authorization,Access-Control-Allow-Methods,X-Requested-With,request-id,x-request-encrypted"
+                                    },
+                                    {
+                                      "key": "Access-Control-Expose-Headers",
+                                      "value": "Content-Disposition,response-id,File-type"
+                                    },
+                                    {
+                                      "key": "Access-Control-Allow-Credentials",
+                                      "value": "true"
+                                    },
+                                    {
+                                      "key": "X-Content-Type-Options",
+                                      "value": "nosniff"
+                                    },
+                                    {
+                                      "key": "X-XSS-Protection",
+                                      "value": "0"
+                                    },
+                                    {
+                                      "key": "Cache-Control",
+                                      "value": "no-cache, no-store, max-age=0, must-revalidate"
+                                    },
+                                    {
+                                      "key": "Pragma",
+                                      "value": "no-cache"
+                                    },
+                                    {
+                                      "key": "Expires",
+                                      "value": "0"
+                                    },
+                                    {
+                                      "key": "X-Frame-Options",
+                                      "value": "DENY"
+                                    },
+                                    {
+                                      "key": "response-id",
+                                      "value": "207CK2262LN805Z12A22X2LA"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "body": "{\n    \"response\": \"0rN9UjqXrN5Lq/9L86OBkPTTZQ7BSa07NiAXKsrWmc8RkR9PQoiRnmZb3iKCrQDW1AobsJRKbyUgqSJeZhoVttr6wTagwj+VwRVBSLbJUgqvm5gkbf2lOeKbNguOKqg04+7z++MujwLY5dznLXbhzU/huArhhZDx0Ax6rNQRW4M=\",\n    \"key\": \"ypAuaquWVRaFZmwdpVBpCmJeMQh8\"\n}"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "login",
+                      "item": [
+                        {
+                          "name": "Authenticate a user",
+                          "event": [
+                            {
+                              "listen": "test",
+                              "script": {
+                                "exec": [
+                                  "// \u2500\u2500 Login \u2014 Test Script \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+                                  "\r",
+                                  "const plaintext = pm.environment.get('DECRYPTED_RESPONSE');\r",
+                                  "let json;\r",
+                                  "\r",
+                                  "// \u2500\u2500 0. Parse decrypted response \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+                                  "try {\r",
+                                  "    json = JSON.parse(plaintext);\r",
+                                  "} catch (e) {\r",
+                                  "    pm.test('Response is valid JSON', () =>\r",
+                                  "        pm.expect.fail('Could not parse decrypted response: ' + e.message)\r",
+                                  "    );\r",
+                                  "    return;\r",
+                                  "}\r",
+                                  "\r",
+                                  "var data = json.data || {};\r",
+                                  "const info = data.additionalInformation || {};\r",
+                                  "const rawBody = pm.response.text();\r",
+                                  "\r",
+                                  "// \u2500\u2500 1. Status Code & Response Time \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+                                  "pm.test('Status code is 200 OK', () => {\r",
+                                  "    pm.expect(pm.response.code).to.equal(200);\r",
+                                  "});\r",
+                                  "\r",
+                                  "pm.test('Response time is under 1500ms (p95 threshold)', () => {\r",
+                                  "    pm.expect(pm.response.responseTime).to.be.below(1500);\r",
+                                  "});\r",
+                                  "\r",
+                                  "// \u2500\u2500 2. Response Envelope \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+                                  "pm.test('Response envelope has all required fields', () => {\r",
+                                  "    pm.expect(json).to.have.all.keys('message', 'success', 'data', 'errors');\r",
+                                  "});\r",
+                                  "\r",
+                                  "pm.test('Authentication was successful', () => {\r",
+                                  "    pm.expect(json.success).to.be.true;\r",
+                                  "    pm.expect(json.message).to.equal('Authentication Successful');\r",
+                                  "});\r",
+                                  "\r",
+                                  "pm.test('No errors returned', () => {\r",
+                                  "    pm.expect(json.errors).to.be.null;\r",
+                                  "});\r",
+                                  "\r",
+                                  "// \u2500\u2500 3. Access Token \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+                                  "pm.test('Access token is present and non-empty', () => {\r",
+                                  "    pm.expect(data).to.have.property('accessToken');\r",
+                                  "    pm.expect(data.accessToken).to.be.a('string').and.not.empty;\r",
+                                  "});\r",
+                                  "\r",
+                                  "pm.test('Access token is a valid JWT (3-part structure)', () => {\r",
+                                  "    const parts = data.accessToken.split('.');\r",
+                                  "    pm.expect(parts).to.have.lengthOf(3, 'JWT must have header.payload.signature');\r",
+                                  "});\r",
+                                  "\r",
+                                  "// Store token for subsequent requests \u2014 never logged (NDPA)\r",
+                                  "if (data.accessToken) {\r",
+                                  "    pm.environment.set('bearerToken', data.accessToken);\r",
+                                  "}\r",
+                                  "\r",
+                                  "// \u2500\u2500 4. Additional Information Structure \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+                                  "pm.test('additionalInformation object is present and non-empty', () => {\r",
+                                  "    pm.expect(data).to.have.property('additionalInformation');\r",
+                                  "    pm.expect(info).to.be.an('object').and.not.empty;\r",
+                                  "});\r",
+                                  "\r",
+                                  "pm.test('additionalInformation has all expected fields', () => {\r",
+                                  "    pm.expect(info).to.include.all.keys(\r",
+                                  "        'role', 'proceed', 'organizationName', 'noSqConfigured',\r",
+                                  "        'profileActivated', 'organizationId', 'firstName', 'noPin',\r",
+                                  "        'bankOrganizationId', 'name', 'email', 'username'\r",
+                                  "    );\r",
+                                  "});\r",
+                                  "\r",
+                                  "// \u2500\u2500 5. Store IDs for subsequent requests (NDPA \u2014 not logged) \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+                                  "if (info.organizationName) {\r",
+                                  "    pm.environment.set('organizationName', info.organizationName);\r",
+                                  "}\r",
+                                  "\r",
+                                  "if (info.organizationId) {\r",
+                                  "    pm.environment.set('organizationId', info.organizationId);\r",
+                                  "}\r",
+                                  "\r",
+                                  "if (info.bankOrganizationId) {\r",
+                                  "    pm.environment.set('bankOrganizationId', info.bankOrganizationId);\r",
+                                  "}\r",
+                                  "\r",
+                                  "// \u2500\u2500 6. Boolean String Flags \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+                                  "pm.test('Boolean flags are valid string values (\"true\" or \"false\")', () => {\r",
+                                  "    const booleanFields = ['proceed', 'noSqConfigured', 'profileActivated', 'noPin'];\r",
+                                  "    const allowed = ['true', 'false'];\r",
+                                  "    booleanFields.forEach(field => {\r",
+                                  "        pm.expect(allowed, `\"${field}\" must be \"true\" or \"false\"`).to.include(info[field]);\r",
+                                  "    });\r",
+                                  "});\r",
+                                  "\r",
+                                  "// \u2500\u2500 7. PII Fields \u2014 Presence and Type Only (NDPA) \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+                                  "pm.test('PII fields are present and non-empty strings', () => {\r",
+                                  "    ['firstName', 'name', 'email', 'username', 'role', 'organizationName'].forEach(field => {\r",
+                                  "        pm.expect(info[field], `\"${field}\" must be a non-empty string`)\r",
+                                  "            .to.be.a('string').and.not.empty;\r",
+                                  "    });\r",
+                                  "});\r",
+                                  "\r",
+                                  "pm.test('Email field is a valid email format', () => {\r",
+                                  "    pm.expect(info.email).to.match(/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/);\r",
+                                  "    // Value intentionally not logged (NDPA)\r",
+                                  "});\r",
+                                  "\r",
+                                  "// \u2500\u2500 8. IDs \u2014 Format Only (NDPA) \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+                                  "pm.test('organizationId is a non-empty string', () => {\r",
+                                  "    pm.expect(info.organizationId).to.be.a('string').and.not.empty;\r",
+                                  "});\r",
+                                  "\r",
+                                  "pm.test('bankOrganizationId is a non-empty string', () => {\r",
+                                  "    pm.expect(info.bankOrganizationId).to.be.a('string').and.not.empty;\r",
+                                  "});\r",
+                                  "\r",
+                                  "// \u2500\u2500 9. Last Login Date \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+                                  "// pm.test('lastLoginDate is a valid ISO 8601 timestamp', () => {\r",
+                                  "//     pm.expect(info.lastLoginDate).to.match(/^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}/);\r",
+                                  "//     pm.expect(new Date(info.lastLoginDate).toString()).to.not.equal('Invalid Date');\r",
+                                  "// });\r",
+                                  "\r",
+                                  "// pm.test('lastLoginDate is not a future date', () => {\r",
+                                  "//     pm.expect(new Date(info.lastLoginDate).getTime()).to.be.at.most(Date.now());\r",
+                                  "// });\r",
+                                  "\r",
+                                  "// \u2500\u2500 10. Password Security (NDPA) \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+                                  "const password = pm.environment.get('password') || '';\r",
+                                  "\r",
+                                  "// pm.test('Password is not exposed in decrypted response', () => {\r",
+                                  "//     pm.expect(plaintext).to.not.include(password,\r",
+                                  "//         'Password must not appear in decrypted response body');\r",
+                                  "// });\r",
+                                  "\r",
+                                  "// pm.test('Password is not exposed in raw response body', () => {\r",
+                                  "//     pm.expect(rawBody).to.not.include(password,\r",
+                                  "//         'Password must not appear in raw (encrypted) response body');\r",
+                                  "// });\r",
+                                  "\r",
+                                  "pm.test('Response does not contain a password field', () => {\r",
+                                  "    pm.expect(rawBody.toLowerCase()).to.not.match(/\"password\"\\s*:\\s*\"[^\"]+\"/,\r",
+                                  "        'Response must not echo back a password field');\r",
+                                  "});"
+                                ],
+                                "type": "text/javascript",
+                                "packages": {},
+                                "requests": {}
+                              }
+                            },
+                            {
+                              "listen": "prerequest",
+                              "script": {
+                                "exec": [
+                                  ""
+                                ],
+                                "type": "text/javascript",
+                                "packages": {},
+                                "requests": {}
+                              }
+                            }
+                          ],
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "*/*"
+                              },
+                              {
+                                "key": "Referer",
+                                "value": "{{referer}}",
+                                "type": "text"
+                              },
+                              {
+                                "key": "Origin",
+                                "value": "{{origin}}",
+                                "type": "text"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n    \"username\": \"{{loginUsername}}\",\n    \"email\": \"{{loginEmail}}\",\n    \"password\": \"{{loginPassword}}\",\n    \"deviceId\": \"{{deviceId}}\",\n    \"authenticationType\": \"{{authenticationType}}\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{customer_service_base_url}}/api/v1/authentication/process/login",
+                              "host": [
+                                "{{customer_service_base_url}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "authentication",
+                                "process",
+                                "login"
+                              ]
+                            },
+                            "description": "This API is used to authenticate a user."
+                          },
+                          "response": [
+                            {
+                              "name": "Authenticate a user",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "*/*"
+                                  },
+                                  {
+                                    "key": "Referer",
+                                    "value": "{{referer}}",
+                                    "type": "text"
+                                  },
+                                  {
+                                    "key": "Origin",
+                                    "value": "{{origin}}",
+                                    "type": "text"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n    \"username\": \"{{username}}\",\n    \"email\": \"{{personalEmail}}\",\n    \"password\": \"{{password}}\",\n    \"deviceId\": \"{{deviceId}}\",\n    \"authenticationType\": \"{{authenticationType}}\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/authentication/process/login",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "authentication",
+                                    "process",
+                                    "login"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "Text",
+                              "header": [
+                                {
+                                  "key": "Server",
+                                  "value": "nginx/1.24.0 (Ubuntu)"
+                                },
+                                {
+                                  "key": "Date",
+                                  "value": "Fri, 22 May 2026 18:23:55 GMT"
+                                },
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                },
+                                {
+                                  "key": "Content-Length",
+                                  "value": "2454"
+                                },
+                                {
+                                  "key": "Connection",
+                                  "value": "keep-alive"
+                                },
+                                {
+                                  "key": "Access-Control-Allow-Origin",
+                                  "value": "*"
+                                },
+                                {
+                                  "key": "Access-Control-Allow-Methods",
+                                  "value": "POST,GET,PUT,DELETE,PATCH,HEAD"
+                                },
+                                {
+                                  "key": "Access-Control-Allow-Headers",
+                                  "value": "Content-Type,Access-Control-Allow-Headers,Access-Control-Allow-Origin,Access-Control-Expose-Headers,Content-Disposition,Authorization,Access-Control-Allow-Methods,X-Requested-With,request-id,x-request-encrypted"
+                                },
+                                {
+                                  "key": "Access-Control-Expose-Headers",
+                                  "value": "Content-Disposition,response-id,File-type"
+                                },
+                                {
+                                  "key": "Access-Control-Allow-Credentials",
+                                  "value": "true"
+                                },
+                                {
+                                  "key": "X-Content-Type-Options",
+                                  "value": "nosniff"
+                                },
+                                {
+                                  "key": "X-XSS-Protection",
+                                  "value": "0"
+                                },
+                                {
+                                  "key": "Cache-Control",
+                                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                                },
+                                {
+                                  "key": "Pragma",
+                                  "value": "no-cache"
+                                },
+                                {
+                                  "key": "Expires",
+                                  "value": "0"
+                                },
+                                {
+                                  "key": "X-Frame-Options",
+                                  "value": "DENY"
+                                },
+                                {
+                                  "key": "response-id",
+                                  "value": "206V1226O9T405CT0H22DQMC"
+                                }
+                              ],
+                              "cookie": [],
+                              "body": "{\n    \"response\": \"Efq74l6fjXvwhtHGOw+ML4OtKAet8BYJnd2bi9/DC26T2yezBurUrHiVk7SHxpkrTrz82cq+YZU0TkG48uZwQX+TpmucjVvDJKkIfpCV+b4AnRuH7Slm2gKFZgi/o6yBn+dttc3JFlj8eV0Ny24RotJWstCLP3iXe6LLmRdrlfFwcejRRzViIQ/l6wK7ernwH532C6XQ12XGQ93E5Wvfyoey74T8Msch9f+B2PJ3jT80slD/AECfHpRerExknRH+kh4pUs2hYnjRPD3GMDKpS2e3cOuNiJBWXJgRejofYDCnYdkn0aYaCaINN7nuqzoPDGttPpy9/0R1mEF1eNTXdFH666LEae5SHYKUXTSakaGBb5iwVJA2R+ijRyLLJnlV9UWxbO8H0TSzsxOeqOOxHZSVI8wTXhOqTMuFKYn7S0ZAtqMbC3beQdL6FbsF4sZCdRLircLaGF+epGBHwE257+2zCHyPUuaDuitFm9vSMlzlNg/HzpywjNwdfHsEk5v+r0vZGD6GXi83kPgQgqgHRT4bxDkoDzMLJ+NTNxmZ9NYFbOIT2Acy3NZIRSVeXORCcu0LtJuWlzSOVj++mA1Oul560rju21L61bSlKlhza/euED0omrzYhvzs4tTZOEZkB66ewRfFLVIR9npyUOWs2YtakUrYzLQf1GMBhJx6KeFMZumowTbsO1tSfneMjuTH88XL61DyWolVJgjpVShQkNRdk2T/IvYE4SApNRvKcFMdOKfpoAu16hUwkqYFcB+ZRjlaHLzwFaNvvxEpkvhW6XxNy1AymgFUYge+qq2i2aKAlDkg+sTPh1GD7Dbn6yGj/WCkm5RfOzTdcFU+U+in34b2hDaLPjNDif7Zucs/YgmkvDBjrf2oX1XCg7xONxPmjcj3u+JU3kvG/8H4ijej38o9LBoc0rqn17MhbdXgp7N63oQRjwlIq4/jDhVHCeODkkKikl79ca5X7ieJz8eUjECUCeCZFeFw8qpabpJ5NPzBgKJ42sTDnPQIiFU2Qx0aLPlRdzPnU4ktZQfLvdCAstNpurv3ehAH5GP3QKT29Su/upmrsp0OwPztJSFPN5YrRtAAjILqQ/tymiQkgY3vpy61aQG7nSQAENi4w/iYWTNkksKivNsc0KXKuen54Whsga5lK8DqhQmwDUUemISTON104zVD6ILGwtEBSA2Ehxo+H6RjQ2mugLpyU75FpkEOIu6mQ5bP38K+3T1S2nSyg82d3jGMEdDLZY1Lsp52k8+KCpWVeLbrGJq/9PicU9+vsAkNur/j/zktdnsLBvHBuyxLvoOQfSt8QR9RW/Y/pJ30FTt9xiRyBC/tui2UmO0HakgAxSkf8qthXjDlokgCXvVRWqRLnLTgAHfx3hS/+blvxLtAS628dgGOXyYeJtH5+AkH9c81xwqfu0eN594eNH4Re0/9Qj6kZhwdfkHgqkSTok5woYbvUCZWQ0aRprGpC6hkJAChAR1/UmaGhRLioY7qUoMLa/tuejCpI0aNDCBQWJShM4tnkjB+yOWHtDxo6FVJQaESFNlltSJLU+n9r3jFw5vFxHrzVIzeHtJp2C4aB+ts44TQbycAcYJwoXlkAdYtQPtH1e9iYevqwZ3syzuimwu0reWp7kBrt01ILw68RmD3q4ZD2Mw2N+9ifAwjqmUfT1+QBu4sGFcGDy+2LDdUmOh0+GpDrxraBnlQrF720pXnmfx1vZ+fW/rTbgoI/0SS8OdotxFq8ALgCsxBQzn5Px46ZUu+78BaJJ8kx9Qbdvm+ds0ZltnVzD2oYN1pgnVfFwNRerCiz231XQVYEhSwL9GVC8oXEtNVaYUpATkYrXvyd5RIpWxBzWsq8I290xyt14yTyveNbRmjQYXI4ESmeOmB2fG9DAELXZkP01ltfF6y4RpLPqxzdMeukfN4T8UuJuHVHXKd95w3y1G9pfcYo/ilKLFQqOCe5v+reAZIoIp4y4B6rODMn8+7J0Rnrz85p1X4UViGC9d7JGnUkin41dI4JjFxa4NyZoyDjDjqEGQKOGY4dHTKKRZzC7g8G/Fral5rGx2Ld80nYDjbgVT9ECqeYdvGo5GotGx2ZNm/PVbQn9GZ5lkKbMhLrhKowwLb9q1q6iJJscRmoiyyV3o20RitqBp4OSy6b8rR39mffyHuNHgFMwMw05kmU6a0rKyFWH3oHYkyEmq6LUTy//4owtDXtF3kNGS2WL4K+x4HTREfGaF6ho6MCi4+cfkIDZzIFlMPaXAEBrG/Gka9diIFUd0hOXThsccBHXcMOYqaggmahGnODwcU1ac+W6x6Uwt5Jhh7Oj+tytcapPp/qMSZ2+uihUikxpVAbI8ey8iOct/8AumFuL/axtKvVLiJKe6ashQXepDQhTixvB9caQ==\",\n    \"key\": \"AqYNXywEiqEOKCBUmKIjXYOm6UfV\"\n}"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "description": "Login with an existing user's credentials, embedded here so this collection can authenticate and run independently, without depending on the Onboarding & Activation collection having run first. Reused from the original 'authentication Copy' folder."
+            },
+            {
+              "name": "account",
+              "item": [
+                {
+                  "name": "process",
+                  "item": [
+                    {
+                      "name": "retrieve-all",
+                      "item": [
+                        {
+                          "name": "Fetch customer accounts with balance",
+                          "event": [
+                            {
+                              "listen": "test",
+                              "script": {
+                                "exec": [
+                                  "// \u2500\u2500 Retrieve all customer accounts \u2014 Test Script \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+                                  "",
+                                  "const plaintext = pm.environment.get('DECRYPTED_RESPONSE');",
+                                  "let json;",
+                                  "",
+                                  "// \u2500\u2500 0. Parse decrypted response \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+                                  "try {",
+                                  "  json = JSON.parse(plaintext);",
+                                  "} catch (e) {",
+                                  "  pm.test('Response is valid JSON', () =>",
+                                  "    pm.expect.fail('Could not parse decrypted response: ' + e.message)",
+                                  "  );",
+                                  "  return;",
+                                  "}",
+                                  "",
+                                  "",
+                                  "// \u2500\u2500 1. TOP-LEVEL ENVELOPE \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+                                  "",
+                                  "pm.test(\"Status code is 200\", function () {",
+                                  "    pm.response.to.have.status(200);",
+                                  "});",
+                                  "",
+                                  "pm.test(\"Response time is within acceptable range\", function () {",
+                                  "    pm.expect(pm.response.responseTime).to.be.below(3000);",
+                                  "});",
+                                  "",
+                                  "pm.test(\"Content-Type is application/json\", function () {",
+                                  "    pm.response.to.have.header(\"Content-Type\");",
+                                  "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+                                  "});",
+                                  "",
+                                  "pm.test(\"Envelope has required top-level keys\", function () {",
+                                  "    pm.expect(json).to.have.all.keys(\"message\", \"success\", \"data\", \"errors\");",
+                                  "});",
+                                  "",
+                                  "pm.test(\"message is 'Request Successfully Treated'\", function () {",
+                                  "    pm.expect(json.message).to.eql(\"Request Successfully Treated\");",
+                                  "});",
+                                  "",
+                                  "pm.test(\"success flag is true\", function () {",
+                                  "    pm.expect(json.success).to.be.true;",
+                                  "});",
+                                  "",
+                                  "pm.test(\"errors is null on successful response\", function () {",
+                                  "    pm.expect(json.errors).to.be.null;",
+                                  "});",
+                                  "",
+                                  "",
+                                  "// \u2500\u2500 2. DATA ARRAY STRUCTURE \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+                                  "",
+                                  "pm.test(\"data is a non-empty array\", function () {",
+                                  "    pm.expect(json.data).to.be.an(\"array\").that.is.not.empty;",
+                                  "});",
+                                  "",
+                                  "pm.test(\"Each account object has all required keys\", function () {",
+                                  "    const accounts = json.data;",
+                                  "    const requiredKeys = [",
+                                  "        \"accountNumber\",",
+                                  "        \"accountName\",",
+                                  "        \"currency\",",
+                                  "        \"accountType\",",
+                                  "        \"withdrawalAmount\",",
+                                  "        \"availableBalance\",",
+                                  "        \"ledgerBalance\",",
+                                  "        \"inflowTotal\",",
+                                  "        \"outflowTotal\"",
+                                  "    ];",
+                                  "",
+                                  "    accounts.forEach(function (account, index) {",
+                                  "        pm.expect(account, `Account at index ${index}`).to.have.all.keys(...requiredKeys);",
+                                  "    });",
+                                  "});",
+                                  "",
+                                  "",
+                                  "// \u2500\u2500 3. FIELD TYPE & VALUE ASSERTIONS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+                                  "",
+                                  "pm.test(\"accountNumber is a non-empty string for each account\", function () {",
+                                  "    const accounts = json.data;",
+                                  "    accounts.forEach(function (account, index) {",
+                                  "        pm.expect(account.accountNumber, `Index ${index} - accountNumber`).to.be.a(\"string\").and.not.empty;",
+                                  "    });",
+                                  "});",
+                                  "",
+                                  "pm.test(\"accountName is a non-empty string for each account\", function () {",
+                                  "    const accounts = json.data;",
+                                  "    accounts.forEach(function (account, index) {",
+                                  "        pm.expect(account.accountName, `Index ${index} - accountName`).to.be.a(\"string\").and.not.empty;",
+                                  "    });",
+                                  "});",
+                                  "",
+                                  "pm.test(\"currency is a valid 3-letter ISO code for each account\", function () {",
+                                  "    const accounts = json.data;",
+                                  "    accounts.forEach(function (account, index) {",
+                                  "        pm.expect(account.currency, `Index ${index} - currency`).to.be.a(\"string\").and.match(/^[A-Z]{3}$/);",
+                                  "    });",
+                                  "});",
+                                  "",
+                                  "pm.test(\"accountType is a non-empty string for each account\", function () {",
+                                  "    const accounts = json.data;",
+                                  "    accounts.forEach(function (account, index) {",
+                                  "        pm.expect(account.accountType, `Index ${index} - accountType`).to.be.a(\"string\").and.not.empty;",
+                                  "    });",
+                                  "});",
+                                  "",
+                                  "pm.test(\"withdrawalAmount is a string or number for each account\", function () {",
+                                  "    const accounts = json.data;",
+                                  "    accounts.forEach(function (account, index) {",
+                                  "        pm.expect(",
+                                  "            [\"string\", \"number\"].includes(typeof account.withdrawalAmount),",
+                                  "            `Index ${index} - withdrawalAmount type`",
+                                  "        ).to.be.true;",
+                                  "    });",
+                                  "});",
+                                  "",
+                                  "pm.test(\"availableBalance is a string or number for each account\", function () {",
+                                  "    const accounts = json.data;",
+                                  "    accounts.forEach(function (account, index) {",
+                                  "        pm.expect(",
+                                  "            [\"string\", \"number\"].includes(typeof account.availableBalance),",
+                                  "            `Index ${index} - availableBalance type`",
+                                  "        ).to.be.true;",
+                                  "    });",
+                                  "});",
+                                  "",
+                                  "pm.test(\"ledgerBalance is a string or number for each account\", function () {",
+                                  "    const accounts = json.data;",
+                                  "    accounts.forEach(function (account, index) {",
+                                  "        pm.expect(",
+                                  "            [\"string\", \"number\"].includes(typeof account.ledgerBalance),",
+                                  "            `Index ${index} - ledgerBalance type`",
+                                  "        ).to.be.true;",
+                                  "    });",
+                                  "});",
+                                  "",
+                                  "",
+                                  "// \u2500\u2500 4. INFLOW / OUTFLOW (nullable) \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+                                  "",
+                                  "pm.test(\"inflowTotal is null or a valid string/number for each account\", function () {",
+                                  "    const accounts = json.data;",
+                                  "    accounts.forEach(function (account, index) {",
+                                  "        if (account.inflowTotal !== null) {",
+                                  "            pm.expect(",
+                                  "                [\"string\", \"number\"].includes(typeof account.inflowTotal),",
+                                  "                `Index ${index} - inflowTotal type`",
+                                  "            ).to.be.true;",
+                                  "        } else {",
+                                  "            pm.expect(account.inflowTotal, `Index ${index} - inflowTotal`).to.be.null;",
+                                  "        }",
+                                  "    });",
+                                  "});",
+                                  "",
+                                  "pm.test(\"outflowTotal is null or a valid string/number for each account\", function () {",
+                                  "    const accounts = json.data;",
+                                  "    accounts.forEach(function (account, index) {",
+                                  "        if (account.outflowTotal !== null) {",
+                                  "            pm.expect(",
+                                  "                [\"string\", \"number\"].includes(typeof account.outflowTotal),",
+                                  "                `Index ${index} - outflowTotal type`",
+                                  "            ).to.be.true;",
+                                  "        } else {",
+                                  "            pm.expect(account.outflowTotal, `Index ${index} - outflowTotal`).to.be.null;",
+                                  "        }",
+                                  "    });",
+                                  "});",
+                                  "",
+                                  "",
+                                  "// \u2500\u2500 5. MULTI-ACCOUNT SPECIFIC \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+                                  "",
+                                  "pm.test(\"Each account has a unique accountNumber\", function () {",
+                                  "    const accounts = json.data;",
+                                  "    const numbers = accounts.map(a => a.accountNumber);",
+                                  "    const uniqueNumbers = new Set(numbers);",
+                                  "    pm.expect(uniqueNumbers.size).to.eql(numbers.length);",
+                                  "});",
+                                  "",
+                                  "pm.test(\"All accounts belong to the same currency or have valid individual currencies\", function () {",
+                                  "    const accounts = json.data;",
+                                  "    accounts.forEach(function (account, index) {",
+                                  "        pm.expect(account.currency, `Index ${index} - currency`).to.be.a(\"string\").and.match(/^[A-Z]{3}$/);",
+                                  "    });",
+                                  "});",
+                                  "",
+                                  "",
+                                  "// \u2500\u2500 6. STORE FIRST ACCOUNT FOR CHAINING (optional) \u2500\u2500",
+                                  "",
+                                  "const firstAccount = json.data[0];",
+                                  "if (firstAccount) {",
+                                  "    pm.environment.set(\"senderAccountNumber\", firstAccount.accountNumber);",
+                                  "    pm.environment.set(\"transferCurrency\", firstAccount.currency);",
+                                  "     pm.environment.set(\"senderAccountName\", firstAccount.accountName);",
+                                  "}"
+                                ],
+                                "type": "text/javascript",
+                                "packages": {},
+                                "requests": {}
+                              }
+                            }
+                          ],
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "*/*"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json",
+                                "type": "text"
+                              },
+                              {
+                                "key": "Referer",
+                                "value": "{{referer}}",
+                                "type": "text"
+                              },
+                              {
+                                "key": "Origin",
+                                "value": "{{origin}}",
+                                "type": "text"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{customer_service_base_url}}/api/v1/account/process/retrieve-all",
+                              "host": [
+                                "{{customer_service_base_url}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "account",
+                                "process",
+                                "retrieve-all"
+                              ]
+                            },
+                            "description": "This API is used to fetch active and viewable accounts of a customer in the system."
+                          },
+                          "response": [
+                            {
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "*/*"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/account/process/retrieve-all",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "account",
+                                    "process",
+                                    "retrieve-all"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "*/*"
+                                }
+                              ],
+                              "cookie": [],
+                              "body": "{}"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "transactions",
+                      "item": [
+                        {
+                          "name": "retrieve-all",
+                          "item": [
+                            {
+                              "name": "fetch Transactions",
+                              "event": [
+                                {
+                                  "listen": "prerequest",
+                                  "script": {
+                                    "exec": [
+                                      "// --- Pre-request Script ---",
+                                      "",
+                                      "// Helper: format a Date as YYYY-MM-DD",
+                                      "function formatDate(date) {",
+                                      "    const yyyy = date.getFullYear();",
+                                      "    const mm = String(date.getMonth() + 1).padStart(2, '0');",
+                                      "    const dd = String(date.getDate()).padStart(2, '0');",
+                                      "    return `${yyyy}-${mm}-${dd}`;",
+                                      "}",
+                                      "",
+                                      "// Define the possible ranges (in days)",
+                                      "const ranges = [",
+                                      "    { label: \"Last 7 days\", days: 7 },",
+                                      "    { label: \"Last 2 months\", days: 60 },",
+                                      "    { label: \"Last 3 months\", days: 90 },",
+                                      "];",
+                                      "",
+                                      "// Pick one at random",
+                                      "const chosenRange = ranges[Math.floor(Math.random() * ranges.length)];",
+                                      "",
+                                      "// endDate = today, startDate = today minus chosen range",
+                                      "const today = new Date();",
+                                      "const startDateObj = new Date();",
+                                      "startDateObj.setDate(today.getDate() - chosenRange.days);",
+                                      "",
+                                      "const endDate = formatDate(today);",
+                                      "const startDate = formatDate(startDateObj);",
+                                      "",
+                                      "// Log for visibility in the Postman console",
+                                      "console.log(`Selected range: ${chosenRange.label} -> startDate=${startDate}, endDate=${endDate}`);",
+                                      "",
+                                      "// Update query params directly on the request",
+                                      "pm.request.url.query.upsert({ key: \"startDate\", value: startDate });",
+                                      "pm.request.url.query.upsert({ key: \"endDate\", value: endDate });",
+                                      "",
+                                      "// --- Optional: randomize the other fields too ---",
+                                      "",
+                                      "// Page number always 0, page size fixed at 10 (adjust as needed)",
+                                      "pm.request.url.query.upsert({ key: \"pageNumber\", value: \"0\" });",
+                                      "pm.request.url.query.upsert({ key: \"pageSize\", value: \"10\" });",
+                                      "",
+                                      "// Random sort direction",
+                                      "// const sortOptions = [\"asc\", \"desc\"];",
+                                      "// const sort = sortOptions[Math.floor(Math.random() * sortOptions.length)];",
+                                      "// pm.request.url.query.upsert({ key: \"sort\", value: sort });"
+                                    ],
+                                    "type": "text/javascript",
+                                    "packages": {},
+                                    "requests": {}
+                                  }
+                                },
+                                {
+                                  "listen": "test",
+                                  "script": {
+                                    "exec": [
+                                      "// \u2500\u2500 Retrieve Transaction History \u2014 Test Script \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+                                      "",
+                                      "const plaintext = pm.environment.get('DECRYPTED_RESPONSE');",
+                                      "let json;",
+                                      "",
+                                      "// \u2500\u2500 0. Parse decrypted response \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+                                      "try {",
+                                      "  json = JSON.parse(plaintext);",
+                                      "} catch (e) {",
+                                      "  pm.test('Response is valid JSON', () =>",
+                                      "    pm.expect.fail('Could not parse decrypted response: ' + e.message)",
+                                      "  );",
+                                      "  return;",
+                                      "}",
+                                      "",
+                                      "",
+                                      "// \u2500\u2500 1. TOP-LEVEL ENVELOPE \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+                                      "",
+                                      "pm.test(\"Status code is 200\", function () {",
+                                      "    pm.response.to.have.status(200);",
+                                      "});",
+                                      "",
+                                      "pm.test(\"Response time is within acceptable range\", function () {",
+                                      "    pm.expect(pm.response.responseTime).to.be.below(3000);",
+                                      "});",
+                                      "",
+                                      "pm.test(\"Content-Type is application/json\", function () {",
+                                      "    pm.response.to.have.header(\"Content-Type\");",
+                                      "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+                                      "});",
+                                      "",
+                                      "pm.test(\"Envelope has required top-level keys\", function () {",
+                                      "    pm.expect(json).to.have.all.keys(\"message\", \"success\", \"data\", \"errors\");",
+                                      "});",
+                                      "",
+                                      "pm.test(\"message is 'Request Successfully Treated'\", function () {",
+                                      "    pm.expect(json.message).to.eql(\"Request Successfully Treated\");",
+                                      "});",
+                                      "",
+                                      "pm.test(\"success flag is true\", function () {",
+                                      "    pm.expect(json.success).to.be.true;",
+                                      "});",
+                                      "",
+                                      "pm.test(\"errors is null on successful response\", function () {",
+                                      "    pm.expect(json.errors).to.be.null;",
+                                      "});",
+                                      "",
+                                      "",
+                                      "// \u2500\u2500 2. DATA / PAGINATION ENVELOPE STRUCTURE \u2500\u2500",
+                                      "",
+                                      "pm.test(\"data has all required pagination keys\", function () {",
+                                      "    pm.expect(json.data).to.have.all.keys(",
+                                      "        \"content\",",
+                                      "        \"currentPage\",",
+                                      "        \"totalPages\",",
+                                      "        \"totalItems\",",
+                                      "        \"isFirstPage\",",
+                                      "        \"isLastPage\"",
+                                      "    );",
+                                      "});",
+                                      "",
+                                      "pm.test(\"content is an array\", function () {",
+                                      "    pm.expect(json.data.content).to.be.an(\"array\");",
+                                      "});",
+                                      "",
+                                      "pm.test(\"currentPage is a number\", function () {",
+                                      "    pm.expect(json.data.currentPage).to.be.a(\"number\");",
+                                      "});",
+                                      "",
+                                      "pm.test(\"totalPages is a number and >= 0\", function () {",
+                                      "    pm.expect(json.data.totalPages).to.be.a(\"number\");",
+                                      "    pm.expect(json.data.totalPages).to.be.at.least(0);",
+                                      "});",
+                                      "",
+                                      "pm.test(\"totalItems is a number and >= 0\", function () {",
+                                      "    pm.expect(json.data.totalItems).to.be.a(\"number\");",
+                                      "    pm.expect(json.data.totalItems).to.be.at.least(0);",
+                                      "});",
+                                      "",
+                                      "const hasData = json.data.content.length > 0;",
+                                      "",
+                                      "// \u2500\u2500 3. EMPTY-RESULT CASE \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+                                      "",
+                                      "if (!hasData) {",
+                                      "    pm.test(\"totalItems and totalPages are 0 when content is empty\", function () {",
+                                      "        pm.expect(json.data.totalItems).to.eql(0);",
+                                      "        pm.expect(json.data.totalPages).to.eql(0);",
+                                      "    });",
+                                      "",
+                                      "    pm.test(\"isFirstPage/isLastPage are null when content is empty\", function () {",
+                                      "        pm.expect(json.data.isFirstPage).to.be.null;",
+                                      "        pm.expect(json.data.isLastPage).to.be.null;",
+                                      "    });",
+                                      "}",
+                                      "",
+                                      "// \u2500\u2500 4. POPULATED-RESULT CASE \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+                                      "",
+                                      "if (hasData) {",
+                                      "",
+                                      "    pm.test(\"isFirstPage is a boolean when content is populated\", function () {",
+                                      "        pm.expect(json.data.isFirstPage).to.be.a(\"boolean\");",
+                                      "    });",
+                                      "",
+                                      "    pm.test(\"isLastPage is a boolean when content is populated\", function () {",
+                                      "        pm.expect(json.data.isLastPage).to.be.a(\"boolean\");",
+                                      "    });",
+                                      "",
+                                      "    pm.test(\"totalItems is at least the length of content on this page\", function () {",
+                                      "        pm.expect(json.data.totalItems).to.be.at.least(json.data.content.length);",
+                                      "    });",
+                                      "",
+                                      "    pm.test(\"Each transaction has all required keys\", function () {",
+                                      "        const requiredKeys = [",
+                                      "            \"transactionId\",",
+                                      "            \"transactionDate\",",
+                                      "            \"amount\",",
+                                      "            \"type\",",
+                                      "            \"description\",",
+                                      "            \"balanceAfter\",",
+                                      "            \"reference\",",
+                                      "            \"status\"",
+                                      "        ];",
+                                      "",
+                                      "        json.data.content.forEach(function (txn, index) {",
+                                      "            pm.expect(txn, `Transaction at index ${index}`).to.have.all.keys(...requiredKeys);",
+                                      "        });",
+                                      "    });",
+                                      "",
+                                      "    pm.test(\"transactionId is a non-empty string for each transaction\", function () {",
+                                      "        json.data.content.forEach(function (txn, index) {",
+                                      "            pm.expect(txn.transactionId, `Index ${index} - transactionId`).to.be.a(\"string\").and.not.empty;",
+                                      "        });",
+                                      "    });",
+                                      "",
+                                      "    pm.test(\"transactionDate is a valid ISO date string for each transaction\", function () {",
+                                      "        json.data.content.forEach(function (txn, index) {",
+                                      "            pm.expect(txn.transactionDate, `Index ${index} - transactionDate`).to.be.a(\"string\");",
+                                      "            pm.expect(new Date(txn.transactionDate).toString(), `Index ${index} - transactionDate parseable`).to.not.eql(\"Invalid Date\");",
+                                      "        });",
+                                      "    });",
+                                      "",
+                                      "    pm.test(\"amount is a string or number for each transaction\", function () {",
+                                      "        json.data.content.forEach(function (txn, index) {",
+                                      "            pm.expect(",
+                                      "                [\"string\", \"number\"].includes(typeof txn.amount),",
+                                      "                `Index ${index} - amount type`",
+                                      "            ).to.be.true;",
+                                      "        });",
+                                      "    });",
+                                      "",
+                                      "    pm.test(\"type is either credit or debit for each transaction\", function () {",
+                                      "        json.data.content.forEach(function (txn, index) {",
+                                      "            pm.expect(txn.type, `Index ${index} - type`).to.be.oneOf([\"credit\", \"debit\"]);",
+                                      "        });",
+                                      "    });",
+                                      "",
+                                      "    pm.test(\"description is a string for each transaction\", function () {",
+                                      "        json.data.content.forEach(function (txn, index) {",
+                                      "            pm.expect(txn.description, `Index ${index} - description`).to.be.a(\"string\");",
+                                      "        });",
+                                      "    });",
+                                      "",
+                                      "    pm.test(\"balanceAfter is a string or number for each transaction\", function () {",
+                                      "        json.data.content.forEach(function (txn, index) {",
+                                      "            pm.expect(",
+                                      "                [\"string\", \"number\"].includes(typeof txn.balanceAfter),",
+                                      "                `Index ${index} - balanceAfter type`",
+                                      "            ).to.be.true;",
+                                      "        });",
+                                      "    });",
+                                      "",
+                                      "    pm.test(\"status is a valid known status for each transaction\", function () {",
+                                      "        json.data.content.forEach(function (txn, index) {",
+                                      "            pm.expect(txn.status, `Index ${index} - status`).to.be.oneOf([\"SUCCESS\", \"PENDING\", \"FAILED\"]);",
+                                      "        });",
+                                      "    });",
+                                      "",
+                                      "    pm.test(\"All transactions fall within the requested date range\", function () {",
+                                      "        const startDate = pm.request.url.query.get(\"startDate\");",
+                                      "        const endDate = pm.request.url.query.get(\"endDate\");",
+                                      "",
+                                      "        if (startDate && endDate) {",
+                                      "            const start = new Date(startDate);",
+                                      "            const end = new Date(endDate);",
+                                      "            end.setHours(23, 59, 59, 999); // include full end day",
+                                      "",
+                                      "            json.data.content.forEach(function (txn, index) {",
+                                      "                const txnDate = new Date(txn.transactionDate);",
+                                      "                pm.expect(txnDate >= start && txnDate <= end, `Index ${index} - transactionDate in range`).to.be.true;",
+                                      "            });",
+                                      "        }",
+                                      "    });",
+                                      "",
+                                      "    // Store first transaction for chaining if needed downstream",
+                                      "    const firstTxn = json.data.content[0];",
+                                      "    if (firstTxn) {",
+                                      "        pm.collectionVariables.set(\"transactionId\", firstTxn.transactionId);",
+                                      "    }",
+                                      "}"
+                                    ],
+                                    "type": "text/javascript",
+                                    "packages": {},
+                                    "requests": {}
+                                  }
+                                }
+                              ],
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "*/*"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json",
+                                    "type": "text"
+                                  },
+                                  {
+                                    "key": "Origin",
+                                    "value": "{{origin}}",
+                                    "type": "text"
+                                  },
+                                  {
+                                    "key": "Referer",
+                                    "value": "{{referer}}",
+                                    "type": "text"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{customer_service_base_url}}/api/v1/account/process/transactions/retrieve-all?accountNumber={{senderAccountNumber}}&pageNumber=0&pageSize=10&startDate=&endDate=&sort=desc",
+                                  "host": [
+                                    "{{customer_service_base_url}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "account",
+                                    "process",
+                                    "transactions",
+                                    "retrieve-all"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "accountNumber",
+                                      "value": "{{senderAccountNumber}}"
+                                    },
+                                    {
+                                      "key": "pageNumber",
+                                      "value": "0"
+                                    },
+                                    {
+                                      "key": "pageSize",
+                                      "value": "10"
+                                    },
+                                    {
+                                      "key": "startDate",
+                                      "value": ""
+                                    },
+                                    {
+                                      "key": "endDate",
+                                      "value": ""
+                                    },
+                                    {
+                                      "key": "sort",
+                                      "value": "desc"
+                                    }
+                                  ]
+                                }
+                              },
+                              "response": [
+                                {
+                                  "name": "OK",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "*/*"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/account/process/transactions/retrieve-all?accountNumber=string&pageNumber=0&pageSize=10&startDate=1962-03-17&endDate=1962-03-17&sort=desc",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "account",
+                                        "process",
+                                        "transactions",
+                                        "retrieve-all"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "accountNumber",
+                                          "value": "string"
+                                        },
+                                        {
+                                          "key": "pageNumber",
+                                          "value": "0"
+                                        },
+                                        {
+                                          "key": "pageSize",
+                                          "value": "10"
+                                        },
+                                        {
+                                          "key": "startDate",
+                                          "value": "1962-03-17"
+                                        },
+                                        {
+                                          "key": "endDate",
+                                          "value": "1962-03-17"
+                                        },
+                                        {
+                                          "key": "sort",
+                                          "value": "desc"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "*/*"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "body": "{}"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          "/**\r",
+          " * Postman Collection Pre-request Script \u2014 Lucid Gateways\r",
+          " */\r",
+          "\r",
+          "\r",
+          "// \u2500\u2500 0. Data Builder \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+          "const url = pm.request.url.toString();\r",
+          "\r",
+          "if (url.includes('/send-bvn-verification-code')) {\r",
+          "    // Generate a random 11-digit BVN (Nigerian format: starts 1-9, then 10 digits)\r",
+          "    const firstDigit = Math.floor(Math.random() * 9) + 1;\r",
+          "    let rest = '';\r",
+          "    for (let i = 0; i < 10; i++) rest += Math.floor(Math.random() * 10);\r",
+          "    const randomBvn = `${firstDigit}${rest}`;\r",
+          "\r",
+          "    pm.environment.set('bvn', randomBvn);\r",
+          "    // console.log('[Pre-request] Generated random BVN:', randomBvn);\r",
+          "}\r",
+          "\r",
+          "// Encryption logic\r",
+          "var CryptoJS = require('crypto-js');\r",
+          "\r",
+          "const CHARACTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';\r",
+          "\r",
+          "function randomAlphanumeric(length) {\r",
+          "    let result = '';\r",
+          "    for (let i = 0; i < length; i++) {\r",
+          "        result += CHARACTERS[Math.floor(Math.random() * CHARACTERS.length)];\r",
+          "    }\r",
+          "    return result;\r",
+          "}\r",
+          "\r",
+          "function generateRequestId(key16) {\r",
+          "    // 4\u00d74 split, prepend 2 random chars to each \u2192 24 chars total\r",
+          "    const parts = [\r",
+          "        key16.substring(0, 4),\r",
+          "        key16.substring(4, 8),\r",
+          "        key16.substring(8, 12),\r",
+          "        key16.substring(12, 16),\r",
+          "    ];\r",
+          "    return parts.map(p => randomAlphanumeric(2) + p).join('');\r",
+          "}\r",
+          "\r",
+          "// \u2500\u2500 1. Read raw JSON body \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+          "const rawBody = pm.request.body && pm.request.body.raw;\r",
+          "if (!rawBody || !rawBody.trim()) {\r",
+          "    // console.log('[Pre-request] No raw body found \u2014 skipping encryption.');\r",
+          "    return;\r",
+          "}\r",
+          "\r",
+          "// Resolve {{var}} placeholders against environment/collection/global vars\r",
+          "const resolvedBody = pm.variables.replaceIn(rawBody);\r",
+          "\r",
+          "let parsedBody;\r",
+          "try {\r",
+          "    parsedBody = JSON.parse(resolvedBody);\r",
+          "} catch (e) {\r",
+          "    // console.error('[Pre-request] Body is not valid JSON \u2014 skipping:', e.message);\r",
+          "    // console.error('[Pre-request] Resolved body was:', resolvedBody);\r",
+          "    // return;\r",
+          "}\r",
+          "const plaintext = JSON.stringify(parsedBody);\r",
+          "\r",
+          "// \u2500\u2500 2. Generate fresh 16-char AES key \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+          "var aesKey = randomAlphanumeric(16);\r",
+          "\r",
+          "// \u2500\u2500 3. Embed key into request-id header \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+          "const requestId = generateRequestId(aesKey);\r",
+          "pm.request.headers.upsert({ key: 'request-id', value: requestId });\r",
+          "\r",
+          "// \u2500\u2500 4. AES-CBC encrypt, IV = key, zero-padding \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+          "const keyWA = CryptoJS.enc.Utf8.parse(aesKey);\r",
+          "const ivWA = CryptoJS.enc.Utf8.parse(aesKey);\r",
+          "const plaintextWA = CryptoJS.enc.Utf8.parse(plaintext);\r",
+          "\r",
+          "const encrypted = CryptoJS.AES.encrypt(plaintextWA, keyWA, {\r",
+          "    iv: ivWA,\r",
+          "    mode: CryptoJS.mode.CBC,\r",
+          "    padding: CryptoJS.pad.ZeroPadding,\r",
+          "});\r",
+          "\r",
+          "const encryptedB64 = encrypted.toString(); // already base64\r",
+          "\r",
+          "// \u2500\u2500 5. Replace outgoing body \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+          "pm.request.body.update(JSON.stringify({ request: encryptedB64 }));\r",
+          "\r",
+          "// \u2500\u2500 6. Debug \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+          "// console.log('[Pre-request] AES Key     :', aesKey);\r",
+          "// console.log('[Pre-request] request-id  :', requestId);\r",
+          "// console.log('[Pre-request] Plaintext   :', plaintext);\r",
+          "// console.log('[Pre-request] Ciphertext  :', encryptedB64.substring(0, 60) + '...');"
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          "/**\r",
+          " * Postman Collection Tests Script \u2014 Lucid Gateway\r",
+          " *\r",
+          " * Place this in: Collection \u2192 Scripts \u2192 Post-response\r",
+          " *\r",
+          " * How it works:\r",
+          " *   - Reads the response-id header to extract the AES key\r",
+          " *   - Decrypts the \"response\" field from the JSON response body\r",
+          " *   - Stores the plaintext in DECRYPTED_RESPONSE (environment variable)\r",
+          " *   - Renders the decrypted result in the Visualizer tab\r",
+          " *\r",
+          " * Decryption scheme:\r",
+          " *   - response-id is 24 chars: [2 noise][4 key][2 noise][4 key][2 noise][4 key][2 noise][4 key]\r",
+          " *   - AES key = chars at positions 2-5, 8-11, 14-17, 20-23\r",
+          " *   - Algorithm: AES/CBC/NoPadding, IV = key bytes\r",
+          " *   - Response envelope: { \"response\": \"<base64-ciphertext>\", \"key\": \"<ignored>\" }\r",
+          " */\r",
+          "\r",
+          "function extractKeyFromResponseId(responseId24) {\r",
+          "    return (\r",
+          "        responseId24.substring(2, 6) +\r",
+          "        responseId24.substring(8, 12) +\r",
+          "        responseId24.substring(14, 18) +\r",
+          "        responseId24.substring(20, 24)\r",
+          "    );\r",
+          "}\r",
+          "\r",
+          "var rawText = pm.response.text();\r",
+          "\r",
+          "// console.log('[Post-response] Status      :', pm.response.code, pm.response.status);\r",
+          "// console.log('[Post-response] Content-Type:', pm.response.headers.get('Content-Type'));\r",
+          "// console.log('[Post-response] Raw body    :', rawText.substring(0, 200) + (rawText.length > 200 ? '...' : ''));\r",
+          "\r",
+          "var responseId = pm.response.headers.get('response-id');\r",
+          "\r",
+          "\r",
+          "\r",
+          "\r",
+          "if (!responseId) {\r",
+          "    // console.log('[Post-response] No response-id header \u2014 response is not encrypted.');\r",
+          "    pm.environment.set('DECRYPTED_RESPONSE', rawText);\r",
+          "    pm.test('Response received (unencrypted)', () => pm.expect(pm.response.code).to.be.lessThan(500));\r",
+          "    return;\r",
+          "}\r",
+          "\r",
+          "if (responseId.length !== 24) {\r",
+          "    // console.error('[Post-response] response-id has unexpected length:', responseId.length, '\u2014 expected 24.');\r",
+          "    pm.environment.set('DECRYPTED_RESPONSE', rawText);\r",
+          "    return;\r",
+          "}\r",
+          "\r",
+          "var aesKey = extractKeyFromResponseId(responseId);\r",
+          "// console.log('[Post-response] response-id :', responseId);\r",
+          "// console.log('[Post-response] AES key     :', aesKey);\r",
+          "\r",
+          "let respJson;\r",
+          "try {\r",
+          "    respJson = JSON.parse(rawText);\r",
+          "} catch (e) {\r",
+          "    // console.log('[Post-response] Body is not JSON \u2014 skipping decryption.');\r",
+          "    pm.environment.set('DECRYPTED_RESPONSE', rawText);\r",
+          "    return;\r",
+          "}\r",
+          "\r",
+          "var cipherB64 = respJson.response;\r",
+          "if (!cipherB64) {\r",
+          "    // console.log('[Post-response] No \"response\" field in body \u2014 skipping decryption.');\r",
+          "    pm.environment.set('DECRYPTED_RESPONSE', rawText);\r",
+          "    return;\r",
+          "}\r",
+          "\r",
+          "try {\r",
+          "    const key = CryptoJS.enc.Utf8.parse(aesKey);\r",
+          "    const iv = CryptoJS.enc.Utf8.parse(aesKey);\r",
+          "\r",
+          "    const decrypted = CryptoJS.AES.decrypt(cipherB64, key, {\r",
+          "        iv,\r",
+          "        mode: CryptoJS.mode.CBC,\r",
+          "        padding: CryptoJS.pad.NoPadding,\r",
+          "    });\r",
+          "\r",
+          "    let plaintext = decrypted.toString(CryptoJS.enc.Utf8);\r",
+          "    plaintext = plaintext.replace(/\\u0000+$/, '').trim();\r",
+          "\r",
+          "    // console.log('[Post-response] Decrypted   :', plaintext);\r",
+          "    pm.environment.set('DECRYPTED_RESPONSE', plaintext);\r",
+          "\r",
+          "    let formattedResponse = plaintext;\r",
+          "    let jsonResponse = null;\r",
+          "\r",
+          "    try {\r",
+          "        jsonResponse = JSON.parse(plaintext);\r",
+          "        formattedResponse = JSON.stringify(jsonResponse, null, 2);\r",
+          "        pm.environment.set('DECRYPTED_RESPONSE_JSON', formattedResponse);\r",
+          "        // console.log('[Post-response] Parsed as JSON successfully.');\r",
+          "    } catch (_) {\r",
+          "        // console.log('[Post-response] Decrypted value is not JSON \u2014 storing as plain text.');\r",
+          "    }\r",
+          "\r",
+          "    const template = `\r",
+          "    <html>\r",
+          "    <head>\r",
+          "      <style>\r",
+          "        * { box-sizing: border-box; margin: 0; padding: 0; }\r",
+          "        body {\r",
+          "          font-family: 'Menlo', 'Consolas', monospace;\r",
+          "          font-size: 13px;\r",
+          "          padding: 20px;\r",
+          "          background: #1e1e1e;\r",
+          "          color: #d4d4d4;\r",
+          "        }\r",
+          "        .badge {\r",
+          "          display: inline-block;\r",
+          "          padding: 4px 10px;\r",
+          "          border-radius: 4px;\r",
+          "          font-weight: bold;\r",
+          "          margin-bottom: 14px;\r",
+          "        }\r",
+          "        .success { background: #2d5a2d; color: #98c379; }\r",
+          "        .error   { background: #5a2d2d; color: #e06c75; }\r",
+          "        h3 { color: #61afef; margin-bottom: 10px; }\r",
+          "        pre {\r",
+          "          background: #252526;\r",
+          "          border: 1px solid #3c3c3c;\r",
+          "          border-radius: 6px;\r",
+          "          padding: 14px;\r",
+          "          white-space: pre-wrap;\r",
+          "          word-wrap: break-word;\r",
+          "          line-height: 1.5;\r",
+          "        }\r",
+          "      </style>\r",
+          "    </head>\r",
+          "    <body>\r",
+          "      <div class=\"badge {{statusClass}}\">{{status}}</div>\r",
+          "      <h3>Decrypted Response</h3>\r",
+          "      <pre>{{response}}</pre>\r",
+          "    </body>\r",
+          "    </html>\r",
+          "  `;\r",
+          "\r",
+          "    pm.visualizer.set(template, {\r",
+          "        response: formattedResponse,\r",
+          "        status: pm.response.code + ' ' + pm.response.status,\r",
+          "        statusClass: pm.response.code < 400 ? 'success' : 'error',\r",
+          "    });\r",
+          "\r",
+          "    // \u2500\u2500 Universal assertions (run for every request in the collection) \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+          "    pm.test('Status code is 2xx', () => {\r",
+          "        pm.expect(pm.response.code).to.be.within(200, 299);\r",
+          "    });\r",
+          "\r",
+          "\r",
+          "} catch (err) {\r",
+          "    // console.error('[Post-response] Decryption error:', err.message);\r",
+          "    // console.error('[Post-response] AES key used    :', aesKey);\r",
+          "    // console.error('[Post-response] response-id     :', responseId);\r",
+          "    pm.environment.set('DECRYPTED_RESPONSE', 'DECRYPTION_FAILED: ' + err.message);\r",
+          "\r",
+          "    pm.test('Decryption did not throw', () => {\r",
+          "        pm.expect.fail('Decryption error: ' + err.message);\r",
+          "    });\r",
+          "}\r",
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "name",
+      "value": "string"
+    },
+    {
+      "key": "requestId",
+      "value": "6668"
+    },
+    {
+      "key": "currency",
+      "value": ""
+    },
+    {
+      "key": "beneficiaryAccountNumber",
+      "value": ""
+    },
+    {
+      "key": "beneficiaryAccountName",
+      "value": ""
+    },
+    {
+      "key": "bearerToken",
+      "value": ""
+    },
+    {
+      "key": "beneficiaryBankCode",
+      "value": ""
+    },
+    {
+      "key": "beneficiaryBankName",
+      "value": ""
+    },
+    {
+      "key": "pinValidatedCode",
+      "value": ""
+    },
+    {
+      "key": "intraBeneficiaryAccountNumber",
+      "value": ""
+    },
+    {
+      "key": "intraBeneficiaryAccountName",
+      "value": ""
+    }
+  ]
+}

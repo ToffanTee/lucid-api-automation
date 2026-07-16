@@ -1,0 +1,3100 @@
+{
+  "info": {
+    "_postman_id": "2148f762-71a6-4a91-84fa-e61f5e4401ba",
+    "name": "Lucid - Onboarding & Activation",
+    "description": "User onboarding (BVN/email verification, invite), new-user login, and activation progress. These three folders are a strict sequential chain -- authentication here logs in with the user just created by onboarding, and activation acts on that same freshly-authenticated user -- so they run together as one flow, in folder order.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "onboarding",
+              "item": [
+                {
+                  "name": "process",
+                  "item": [
+                    {
+                      "name": "send-bvn-verification-code",
+                      "item": [
+                        {
+                          "name": "Send otp to customer bvn registered phone number",
+                          "event": [
+                            {
+                              "listen": "test",
+                              "script": {
+                                "exec": [
+                                  ""
+                                ],
+                                "type": "text/javascript",
+                                "packages": {},
+                                "requests": {}
+                              }
+                            }
+                          ],
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "*/*"
+                              },
+                              {
+                                "key": "Referer",
+                                "value": "{{referer}}"
+                              },
+                              {
+                                "key": "Origin",
+                                "value": "{{origin}}"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"bvn\": {{bvn}}\n}",
+                              "options": {
+                                "raw": {
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{customer_service_base_url}}/api/v1/onboarding/process/send-bvn-verification-code",
+                              "host": [
+                                "{{customer_service_base_url}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "onboarding",
+                                "process",
+                                "send-bvn-verification-code"
+                              ]
+                            },
+                            "description": "This API is used to send otp to the customer supplied bvn registered phone number"
+                          },
+                          "response": [
+                            {
+                              "name": "Send otp to customer bvn registered phone number",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "*/*"
+                                  },
+                                  {
+                                    "key": "Referer",
+                                    "value": "{{referer}}"
+                                  },
+                                  {
+                                    "key": "Origin",
+                                    "value": "{{origin}}"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"bvn\": {{bvn}}\n}",
+                                  "options": {
+                                    "raw": {
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/onboarding/process/send-bvn-verification-code",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "onboarding",
+                                    "process",
+                                    "send-bvn-verification-code"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "Text",
+                              "header": [
+                                {
+                                  "key": "Server",
+                                  "value": "nginx/1.24.0 (Ubuntu)"
+                                },
+                                {
+                                  "key": "Date",
+                                  "value": "Fri, 22 May 2026 18:29:51 GMT"
+                                },
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                },
+                                {
+                                  "key": "Content-Length",
+                                  "value": "229"
+                                },
+                                {
+                                  "key": "Connection",
+                                  "value": "keep-alive"
+                                },
+                                {
+                                  "key": "Access-Control-Allow-Origin",
+                                  "value": "*"
+                                },
+                                {
+                                  "key": "Access-Control-Allow-Methods",
+                                  "value": "POST,GET,PUT,DELETE,PATCH,HEAD"
+                                },
+                                {
+                                  "key": "Access-Control-Allow-Headers",
+                                  "value": "Content-Type,Access-Control-Allow-Headers,Access-Control-Allow-Origin,Access-Control-Expose-Headers,Content-Disposition,Authorization,Access-Control-Allow-Methods,X-Requested-With,request-id,x-request-encrypted"
+                                },
+                                {
+                                  "key": "Access-Control-Expose-Headers",
+                                  "value": "Content-Disposition,response-id,File-type"
+                                },
+                                {
+                                  "key": "Access-Control-Allow-Credentials",
+                                  "value": "true"
+                                },
+                                {
+                                  "key": "X-Content-Type-Options",
+                                  "value": "nosniff"
+                                },
+                                {
+                                  "key": "X-XSS-Protection",
+                                  "value": "0"
+                                },
+                                {
+                                  "key": "Cache-Control",
+                                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                                },
+                                {
+                                  "key": "Pragma",
+                                  "value": "no-cache"
+                                },
+                                {
+                                  "key": "Expires",
+                                  "value": "0"
+                                },
+                                {
+                                  "key": "X-Frame-Options",
+                                  "value": "DENY"
+                                },
+                                {
+                                  "key": "response-id",
+                                  "value": "208X3F26BI1R05TS1322AUQM"
+                                }
+                              ],
+                              "cookie": [],
+                              "body": "{\n    \"response\": \"bUNavcSUthrveG1bLNmAn5zBNXPa7TZEnQ64y8eXKbHwm+kZbjhUrCPg872GDwo6QcnibmGjbcd5uWCRXKWtluM9ekor66ReyCS6JxK7ChEdQbv4AThfOSImOTiSL1c9OTZXZ7H3Mn1/uI8b5iGJPEJHd0Qo70jm6+pxO/7q1Nk=\",\n    \"key\": \"sTljKokkJvyuQFhcnsweKeuUWELH\"\n}"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "validate-bvn",
+                      "item": [
+                        {
+                          "name": "Validate customer bvn",
+                          "event": [
+                            {
+                              "listen": "test",
+                              "script": {
+                                "exec": [
+                                  "// \u2500\u2500 Extract BVN response data to environment \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+                                  "const plaintext = pm.environment.get('DECRYPTED_RESPONSE');\r",
+                                  "let json;\r",
+                                  "\r",
+                                  "try {\r",
+                                  "    json = JSON.parse(plaintext);\r",
+                                  "} catch (e) {\r",
+                                  "    // console.error('[Test] Could not parse DECRYPTED_RESPONSE:', e.message);\r",
+                                  "    return;\r",
+                                  "}\r",
+                                  "\r",
+                                  "var data = json.data || {};\r",
+                                  "\r",
+                                  "// Save all useful BVN fields for downstream requests\r",
+                                  "pm.environment.set('bvnFirstName', data.firstName || '');\r",
+                                  "pm.environment.set('bvnLastName', data.lastName || '');\r",
+                                  "pm.environment.set('bvnOtherNames', data.otherNames || '');\r",
+                                  "pm.environment.set('bvnPhoneNumber', data.phoneNumber || '');\r",
+                                  "pm.environment.set('bvnDob', data.dob || '');\r",
+                                  "pm.environment.set('bvnValidationRef', data.validationRef || '');\r",
+                                  "pm.environment.set('bvnProvider', data.provider || '');\r",
+                                  "pm.environment.set('bvnStatus', data.responseStatus || '');\r",
+                                  "\r",
+                                  "// console.log('[Test] BVN data saved to environment.');\r",
+                                  "\r",
+                                  "// \u2500\u2500 Generate fresh random values for downstream requests \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+                                  "\r",
+                                  "// \u2500\u2500 Personal email (collision-resistant, BVN name-based) \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+                                  "const firstName = (pm.environment.get('bvnFirstName') || 'user').toLowerCase();\r",
+                                  "const lastName  = (pm.environment.get('bvnLastName')  || 'test').toLowerCase();\r",
+                                  "\r",
+                                  "// High-entropy suffix: timestamp (ms) + 4 random digits\r",
+                                  "const timestamp     = Date.now();                                        // 13 digits, always unique\r",
+                                  "const randomPad     = Math.floor(Math.random() * 9000 + 1000);          // 4 extra digits\r",
+                                  "const uniqueSuffix  = `${timestamp}${randomPad}`;                       // e.g. 17819823746471842\r",
+                                  "\r",
+                                  "// Separator variety\r",
+                                  "const separators    = ['.', '_', ''];\r",
+                                  "const sep           = separators[Math.floor(Math.random() * separators.length)];\r",
+                                  "\r",
+                                  "// Patterns \u2014 suffix guarantees uniqueness regardless of pattern chosen\r",
+                                  "const personalPatterns = [\r",
+                                  "  `${firstName}${sep}${lastName}${uniqueSuffix}`,     // jane.doe178198237464718423\r",
+                                  "  `${firstName}${uniqueSuffix}`,                      // jane17819823746471842\r",
+                                  "  `${firstName[0]}${lastName}${sep}${uniqueSuffix}`,  // jdoe_17819823746471842\r",
+                                  "  `${lastName}${sep}${firstName}${uniqueSuffix}`,     // doe.jane17819823746471842\r",
+                                  "];\r",
+                                  "\r",
+                                  "const personalDomains = ['gmail.com', 'yahoo.com', 'outlook.com', 'yopmail.com'];\r",
+                                  "const personalDomain  = personalDomains[Math.floor(Math.random() * personalDomains.length)];\r",
+                                  "const personalEmail   = personalPatterns[Math.floor(Math.random() * personalPatterns.length)]\r",
+                                  "                        + '@' + personalDomain;\r",
+                                  "\r",
+                                  "\r",
+                                  "// Random company name \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+                                  "const randomCompanyName = pm.variables.replaceIn('{{$randomCompanyName}}');\r",
+                                  "\r",
+                                  "pm.environment.set('personalEmail', personalEmail);\r",
+                                  "pm.environment.set('randomCompanyName', randomCompanyName);\r",
+                                  "\r",
+                                  "// console.log('[Post-request] personalEmail :', personalEmail);\r",
+                                  "// console.log('[Post-request] randomCompanyName :', randomCompanyName);"
+                                ],
+                                "type": "text/javascript",
+                                "packages": {},
+                                "requests": {}
+                              }
+                            }
+                          ],
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "*/*"
+                              },
+                              {
+                                "key": "Referer",
+                                "value": "{{referer}}",
+                                "type": "text"
+                              },
+                              {
+                                "key": "Origin",
+                                "value": "{{origin}}",
+                                "type": "text"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"otp\": {{bvnOtp}},\n  \"bvn\": {{bvn}}\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{customer_service_base_url}}/api/v1/onboarding/process/validate-bvn",
+                              "host": [
+                                "{{customer_service_base_url}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "onboarding",
+                                "process",
+                                "validate-bvn"
+                              ]
+                            },
+                            "description": "This API is used to validate customer bvn"
+                          },
+                          "response": [
+                            {
+                              "name": "Validate customer bvn",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "*/*"
+                                  },
+                                  {
+                                    "key": "Referer",
+                                    "value": "{{referer}}",
+                                    "type": "text"
+                                  },
+                                  {
+                                    "key": "Origin",
+                                    "value": "{{origin}}",
+                                    "type": "text"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"otp\": {{bvnOtp}},\n  \"bvn\": {{bvn}}\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/onboarding/process/validate-bvn",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "onboarding",
+                                    "process",
+                                    "validate-bvn"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "Text",
+                              "header": [
+                                {
+                                  "key": "Server",
+                                  "value": "nginx/1.24.0 (Ubuntu)"
+                                },
+                                {
+                                  "key": "Date",
+                                  "value": "Fri, 22 May 2026 18:23:14 GMT"
+                                },
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                },
+                                {
+                                  "key": "Content-Length",
+                                  "value": "534"
+                                },
+                                {
+                                  "key": "Connection",
+                                  "value": "keep-alive"
+                                },
+                                {
+                                  "key": "Access-Control-Allow-Origin",
+                                  "value": "*"
+                                },
+                                {
+                                  "key": "Access-Control-Allow-Methods",
+                                  "value": "POST,GET,PUT,DELETE,PATCH,HEAD"
+                                },
+                                {
+                                  "key": "Access-Control-Allow-Headers",
+                                  "value": "Content-Type,Access-Control-Allow-Headers,Access-Control-Allow-Origin,Access-Control-Expose-Headers,Content-Disposition,Authorization,Access-Control-Allow-Methods,X-Requested-With,request-id,x-request-encrypted"
+                                },
+                                {
+                                  "key": "Access-Control-Expose-Headers",
+                                  "value": "Content-Disposition,response-id,File-type"
+                                },
+                                {
+                                  "key": "Access-Control-Allow-Credentials",
+                                  "value": "true"
+                                },
+                                {
+                                  "key": "X-Content-Type-Options",
+                                  "value": "nosniff"
+                                },
+                                {
+                                  "key": "X-XSS-Protection",
+                                  "value": "0"
+                                },
+                                {
+                                  "key": "Cache-Control",
+                                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                                },
+                                {
+                                  "key": "Pragma",
+                                  "value": "no-cache"
+                                },
+                                {
+                                  "key": "Expires",
+                                  "value": "0"
+                                },
+                                {
+                                  "key": "X-Frame-Options",
+                                  "value": "DENY"
+                                },
+                                {
+                                  "key": "response-id",
+                                  "value": "20ABXO265NKQ051UMR22S0FH"
+                                }
+                              ],
+                              "cookie": [],
+                              "body": "{\n    \"response\": \"bPXydAujfCB6r8PdpxuT5s0W/U/7o0RsyO+oTxRp8k9jY5/O6+nWej9PqDo90ffmJXrMEDgVzyBxbgiDJtT8LXmax7h9JIsIaK6A0Tq71f0LiCvhNC1QnpmI9jOxu8IhuyeHksXybhFY2QOIyX2BvGnvGzTJhXVPe+4ftvH7+6kbbfT6pLuWOdGzJpim09Est7oZ1mHYyZzTCJWGYvGKod6nGNtolSqpbTPjT2cGT9QBrFqeN8GLV/Tk7RrInqP94kGfscz200Moi3ZPylaFvOh0bdlN2T0UMKYLF47EotPjSbSwBotdBRJVNdTpGzN3cdIM4WEEET0IfgB3knfphSNHO/Yi0n3hUx8QvCkhwmWwCyxgvfCLQAUA7ohpgA+WplSAfqV9zs9AeGL7hLPyrAlwc2uOHcPy/piQcoZ1MRdXjTh2lkWZrhBYukcCWBBSHggOZHNkFeHwTIlcLapEGw==\",\n    \"key\": \"QfLM24ZY3Bn5wiD8u9UmD4KP0TqT\"\n}"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "send-mail-verification-code",
+                      "item": [
+                        {
+                          "name": "Send otp to customer email",
+                          "event": [
+                            {
+                              "listen": "test",
+                              "script": {
+                                "exec": [
+                                  ""
+                                ],
+                                "type": "text/javascript",
+                                "packages": {},
+                                "requests": {}
+                              }
+                            },
+                            {
+                              "listen": "prerequest",
+                              "script": {
+                                "exec": [
+                                  "// Generate and lock in the random values for this request\r",
+                                  "const email       = pm.variables.replaceIn('{{$randomEmail}}');\r",
+                                  "const companyName = pm.variables.replaceIn('{{$randomCompanyName}}');\r",
+                                  "\r",
+                                  "// Save to environment so later requests can use them\r",
+                                  "pm.environment.set('randomEmail',       email);\r",
+                                  "pm.environment.set('randomCompanyName', companyName);\r",
+                                  "\r",
+                                  "// console.log('[Pre-request] email       :', email);\r",
+                                  "// console.log('[Pre-request] companyName :', companyName);"
+                                ],
+                                "type": "text/javascript",
+                                "packages": {},
+                                "requests": {}
+                              }
+                            }
+                          ],
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "*/*"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json",
+                                "type": "text"
+                              },
+                              {
+                                "key": "Referer",
+                                "value": "{{referer}}",
+                                "type": "text"
+                              },
+                              {
+                                "key": "Origin",
+                                "value": "{{origin}}",
+                                "type": "text"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{customer_service_base_url}}/api/v1/onboarding/process/send-mail-verification-code?email={{personalEmail}}&firstName={{bvnFirstName}}&companyName={{randomCompanyName}}",
+                              "host": [
+                                "{{customer_service_base_url}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "onboarding",
+                                "process",
+                                "send-mail-verification-code"
+                              ],
+                              "query": [
+                                {
+                                  "key": "email",
+                                  "value": "{{personalEmail}}"
+                                },
+                                {
+                                  "key": "firstName",
+                                  "value": "{{bvnFirstName}}"
+                                },
+                                {
+                                  "key": "companyName",
+                                  "value": "{{randomCompanyName}}"
+                                }
+                              ]
+                            },
+                            "description": "This API is used to send otp to the customer supplied email"
+                          },
+                          "response": [
+                            {
+                              "name": "Send otp to customer email",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "*/*"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json",
+                                    "type": "text"
+                                  },
+                                  {
+                                    "key": "Referer",
+                                    "value": "{{referer}}",
+                                    "type": "text"
+                                  },
+                                  {
+                                    "key": "Origin",
+                                    "value": "{{origin}}",
+                                    "type": "text"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/onboarding/process/send-mail-verification-code?email={{personalEmail}}&firstName={{bvnFirstName}}&companyName={{randomCompanyName}}",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "onboarding",
+                                    "process",
+                                    "send-mail-verification-code"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "email",
+                                      "value": "{{personalEmail}}"
+                                    },
+                                    {
+                                      "key": "firstName",
+                                      "value": "{{bvnFirstName}}"
+                                    },
+                                    {
+                                      "key": "companyName",
+                                      "value": "{{randomCompanyName}}"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "Text",
+                              "header": [
+                                {
+                                  "key": "Server",
+                                  "value": "nginx/1.24.0 (Ubuntu)"
+                                },
+                                {
+                                  "key": "Date",
+                                  "value": "Fri, 22 May 2026 18:23:19 GMT"
+                                },
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                },
+                                {
+                                  "key": "Content-Length",
+                                  "value": "180"
+                                },
+                                {
+                                  "key": "Connection",
+                                  "value": "keep-alive"
+                                },
+                                {
+                                  "key": "Access-Control-Allow-Origin",
+                                  "value": "*"
+                                },
+                                {
+                                  "key": "Access-Control-Allow-Methods",
+                                  "value": "POST,GET,PUT,DELETE,PATCH,HEAD"
+                                },
+                                {
+                                  "key": "Access-Control-Allow-Headers",
+                                  "value": "Content-Type,Access-Control-Allow-Headers,Access-Control-Allow-Origin,Access-Control-Expose-Headers,Content-Disposition,Authorization,Access-Control-Allow-Methods,X-Requested-With,request-id,x-request-encrypted"
+                                },
+                                {
+                                  "key": "Access-Control-Expose-Headers",
+                                  "value": "Content-Disposition,response-id,File-type"
+                                },
+                                {
+                                  "key": "Access-Control-Allow-Credentials",
+                                  "value": "true"
+                                },
+                                {
+                                  "key": "X-Content-Type-Options",
+                                  "value": "nosniff"
+                                },
+                                {
+                                  "key": "X-XSS-Protection",
+                                  "value": "0"
+                                },
+                                {
+                                  "key": "Cache-Control",
+                                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                                },
+                                {
+                                  "key": "Pragma",
+                                  "value": "no-cache"
+                                },
+                                {
+                                  "key": "Expires",
+                                  "value": "0"
+                                },
+                                {
+                                  "key": "X-Frame-Options",
+                                  "value": "DENY"
+                                },
+                                {
+                                  "key": "response-id",
+                                  "value": "20LA3N26FNLZ05PN3P2267TJ"
+                                }
+                              ],
+                              "cookie": [],
+                              "body": "{\n    \"response\": \"IFVWtNcFEGjDgfwqlKM4EutuDHn0ZN8g8x1fad+QWwEq63gCvTeThC7ZYUZiUGpVUInRca5TKA0wMiDjgFY7BvGNriNb75k3xyLMy7LkueObj7bs0AURxD5owpMuGQo3\",\n    \"key\": \"Kxm7rUHMo6I6knTKaQkIAvPTuIBA\"\n}"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "mail-verification-code",
+                      "item": [
+                        {
+                          "name": "Validate otp sent to customer email",
+                          "event": [
+                            {
+                              "listen": "prerequest",
+                              "script": {
+                                "exec": [
+                                  ""
+                                ],
+                                "type": "text/javascript",
+                                "packages": {},
+                                "requests": {}
+                              }
+                            },
+                            {
+                              "listen": "test",
+                              "script": {
+                                "exec": [
+                                  "// \u2500\u2500 Extract BVN response data to environment \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+                                  "const plaintext = pm.environment.get('DECRYPTED_RESPONSE');",
+                                  "let json;",
+                                  "",
+                                  "try {",
+                                  "    json = JSON.parse(plaintext);",
+                                  "} catch (e) {",
+                                  "    // console.error('[Test] Could not parse DECRYPTED_RESPONSE:', e.message);",
+                                  "    return;",
+                                  "}",
+                                  "",
+                                  "var data = json.data || {};",
+                                  "",
+                                  "// Save all useful information for downstream requests",
+                                  "pm.environment.set('registrationCode', data.registrationCode || '');",
+                                  "",
+                                  "// \u2500\u2500 Generate random customer personal details \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+                                  "",
+                                  "// -- Username (based on BVN name for consistency) --",
+                                  "const firstName = (pm.environment.get('bvnFirstName') || 'user').toLowerCase();",
+                                  "const lastName = (pm.environment.get('bvnLastName') || 'test').toLowerCase();",
+                                  "const usernumber = Math.floor(Math.random() * 90000 + 10000);",
+                                  "const separators = ['.', '_', ''];",
+                                  "const sep = separators[Math.floor(Math.random() * separators.length)];",
+                                  "const usernamePatterns = [",
+                                  "    `${firstName}${sep}${lastName}${usernumber}`,",
+                                  "    `${firstName[0]}${lastName}${usernumber}`,",
+                                  "    `${firstName}${usernumber}`,",
+                                  "];",
+                                  "const username = usernamePatterns[Math.floor(Math.random() * usernamePatterns.length)];",
+                                  "",
+                                  "// -- Occupation --",
+                                  "const occupations = [",
+                                  "  'Software Engineer',   'Accountant',          'Medical Doctor',",
+                                  "  'Lawyer',              'Civil Engineer',       'Pharmacist',",
+                                  "  'Business Analyst',    'Project Manager',      'Architect',",
+                                  "  'Data Scientist',      'Nurse',                'Teacher',",
+                                  "  'Financial Analyst',   'Marketing Manager',    'Human Resources Manager',",
+                                  "  'Mechanical Engineer', 'Electrical Engineer',  'Quantity Surveyor',",
+                                  "  'Economist',           'Journalist',",
+                                  "];",
+                                  "const occupation = occupations[Math.floor(Math.random() * occupations.length)];",
+                                  "",
+                                  "pm.environment.set('occupation', occupation);",
+                                  "// console.log('[Pre-request] occupation       :', occupation);",
+                                  "",
+                                  "// -- Title --",
+                                  "const titles = ['Mr.', 'Mrs.'];",
+                                  "const title = titles[Math.floor(Math.random() * titles.length)];",
+                                  "",
+                                  "// -- City / State (consistent pairs) --",
+                                  "const cityStatePairs = [",
+                                  "    { city: 'Lagos', state: 'Lagos' },",
+                                  "    { city: 'Ikeja', state: 'Lagos' },",
+                                  "    { city: 'Abuja', state: 'FCT' },",
+                                  "    { city: 'Port Harcourt', state: 'Rivers' },",
+                                  "    { city: 'Kano', state: 'Kano' },",
+                                  "    { city: 'Ibadan', state: 'Oyo' },",
+                                  "    { city: 'Eket', state: 'Akwa Ibom' },",
+                                  "    { city: 'Uyo', state: 'Akwa Ibom' },",
+                                  "    { city: 'Enugu', state: 'Enugu' },",
+                                  "    { city: 'Benin City', state: 'Edo' },",
+                                  "    { city: 'Onitsha', state: 'Anambra' },",
+                                  "    { city: 'Owerri', state: 'Imo' },",
+                                  "    { city: 'Calabar', state: 'Cross River' },",
+                                  "    { city: 'Warri', state: 'Delta' },",
+                                  "    { city: 'Kaduna', state: 'Kaduna' },",
+                                  "];",
+                                  "const cityState = cityStatePairs[Math.floor(Math.random() * cityStatePairs.length)];",
+                                  "",
+                                  "// -- Personal Address --",
+                                  "const personalStreets = [",
+                                  "    '14 Aba Road', '3 Rumuola Drive', '22 Trans Amadi Street',",
+                                  "    '8 Woji Road', '5 Old GRA Avenue', '17 Aggrey Road',",
+                                  "    '30 Ikwerre Road', '11 Birabi Street', '6 Tombia Extension',",
+                                  "    '9 Peter Odili Road',",
+                                  "];",
+                                  "const address = personalStreets[Math.floor(Math.random() * personalStreets.length)];",
+                                  "",
+                                  "// -- State of Origin --",
+                                  "const statesOfOrigin = [",
+                                  "    'Abia', 'Anambra', 'Bayelsa', 'Cross River', 'Delta',",
+                                  "    'Ebonyi', 'Edo', 'Enugu', 'Imo', 'Kogi',",
+                                  "    'Lagos', 'Ogun', 'Ondo', 'Osun', 'Oyo',",
+                                  "    'Rivers', 'Akwa Ibom', 'Benue', 'Kaduna', 'Kano',",
+                                  "];",
+                                  "const stateOfOrigin = statesOfOrigin[Math.floor(Math.random() * statesOfOrigin.length)];",
+                                  "",
+                                  "// -- Mother's Maiden Name --",
+                                  "const maidenNames = [",
+                                  "    'Adeyemi', 'Okafor', 'Nwosu', 'Eze', 'Okeke',",
+                                  "    'Adeleke', 'Okonkwo', 'Amadi', 'Ikenna', 'Obiora',",
+                                  "    'Chukwu', 'Onyeka', 'Nwachukwu', 'Abiodun', 'Olawale',",
+                                  "];",
+                                  "const motherMaidenName = maidenNames[Math.floor(Math.random() * maidenNames.length)];",
+                                  "",
+                                  "// -- Save all to environment --",
+                                  "pm.environment.set('username', username);",
+                                  "pm.environment.set('title', title);",
+                                  "pm.environment.set('address', address);",
+                                  "pm.environment.set('city', cityState.city);",
+                                  "pm.environment.set('state', cityState.state);",
+                                  "pm.environment.set('stateOfOrigin', stateOfOrigin);",
+                                  "pm.environment.set('motherMaidenName', motherMaidenName);",
+                                  "",
+                                  "// console.log('[Pre-request] username         :', username);",
+                                  "// console.log('[Pre-request] title            :', title);",
+                                  "// console.log('[Pre-request] address          :', address);",
+                                  "// console.log('[Pre-request] city / state     :', cityState.city, '/', cityState.state);",
+                                  "// console.log('[Pre-request] stateOfOrigin    :', stateOfOrigin);",
+                                  "// console.log('[Pre-request] motherMaidenName :', motherMaidenName);",
+                                  "",
+                                  "",
+                                  "// \u2500\u2500 Generate random business details \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+                                  "",
+                                  "",
+                                  "// Organization email (based on company name)",
+                                  "const companyName = (pm.environment.get('randomCompanyName') || 'company')",
+                                  "    .toLowerCase()",
+                                  "    .replace(/[^a-z0-9]/g, ''); // strip spaces/special chars",
+                                  "",
+                                  "const orgDomains = ['business.com', 'company.com', 'mail.com', 'corporate.com', 'yopmail.com'];",
+                                  "const orgDomain = orgDomains[Math.floor(Math.random() * orgDomains.length)];",
+                                  "const orgPatterns = [",
+                                  "    `info@${companyName}.com`,",
+                                  "    `admin@${companyName}.com`,",
+                                  "    `contact@${companyName}.com`,",
+                                  "    `hello@${companyName}.${orgDomain}`,",
+                                  "];",
+                                  "const orgEmail = orgPatterns[Math.floor(Math.random() * orgPatterns.length)];",
+                                  "",
+                                  "// Phone: Nigerian format with country code (2348XXXXXXXXX)",
+                                  "const prefixes = ['8010', '8020', '8030', '8060', '8100', '8130', '9010', '7030'];",
+                                  "const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];",
+                                  "const suffix = Math.floor(Math.random() * 9000000 + 1000000).toString(); // 7 digits",
+                                  "const orgPhone = '234' + prefix + suffix;",
+                                  "",
+                                  "// Registration number: 8 random digits",
+                                  "const regNumber = Math.floor(Math.random() * 90000000 + 10000000).toString();",
+                                  "",
+                                  "// TIN: 9 random digits",
+                                  "const tin = Math.floor(Math.random() * 900000000 + 100000000).toString();",
+                                  "",
+                                  "// Registration date: random date in the last 5 years",
+                                  "const now = new Date();",
+                                  "const pastMs = now.getTime() - Math.floor(Math.random() * 5 * 365 * 24 * 60 * 60 * 1000);",
+                                  "const regDate = new Date(pastMs).toISOString().split('T')[0]; // YYYY-MM-DD",
+                                  "",
+                                  "// Nature of business",
+                                  "const natures = ['Retail Trade', 'Wholesale Distribution', 'Technology Services',",
+                                  "    'Financial Consulting', 'Logistics', 'Healthcare Services',",
+                                  "    'Food & Beverage', 'Construction', 'Education', 'Agriculture'];",
+                                  "const nature = natures[Math.floor(Math.random() * natures.length)];",
+                                  "",
+                                  "// -- Organisation Address --",
+                                  "const orgStreets = ['12 Broad Street', '45 Marina Road', '7 Adeola Odeku Street',",
+                                  "    '23 Bode Thomas Street', '8 Wole Aribikeola Street', '3 Ahmadu Bello Way'];",
+                                  "const cities = ['Lagos', 'Abuja', 'Port Harcourt', 'Kano', 'Ibadan'];",
+                                  "const orgAddress = orgStreets[Math.floor(Math.random() * orgStreets.length)] + ', ' +",
+                                  "    cities[Math.floor(Math.random() * cities.length)];",
+                                  "",
+                                  "// Category",
+                                  "// const categories   = ['Manufacturing', 'Retail', 'Financial Services', 'Technology',",
+                                  "//                       'Healthcare', 'Education', 'Agriculture', 'Construction', 'Logistics'];",
+                                  "// const category     = categories[Math.floor(Math.random() * categories.length)];",
+                                  "",
+                                  "// Save to environment",
+                                  "pm.environment.set('orgPhone', orgPhone);",
+                                  "pm.environment.set('regNumber', regNumber);",
+                                  "pm.environment.set('tin', tin);",
+                                  "pm.environment.set('regDate', regDate);",
+                                  "pm.environment.set('orgNature', nature);",
+                                  "pm.environment.set('orgAddress', orgAddress);",
+                                  "pm.environment.set('orgEmail', orgEmail);",
+                                  "// pm.environment.set('orgCategory', category);",
+                                  "",
+                                  "// console.log('[Pre-request] orgPhone   :', orgPhone);",
+                                  "// console.log('[Pre-request] regNumber  :', regNumber);",
+                                  "// console.log('[Pre-request] tin        :', tin);",
+                                  "// console.log('[Pre-request] regDate    :', regDate);",
+                                  "// console.log('[Pre-request] nature     :', nature);",
+                                  "// console.log('[Pre-request] orgAddress :', orgAddress);",
+                                  "// console.log('[Pre-request] orgEmail   :', orgEmail);",
+                                  "// console.log('[Pre-request] Useful data saved to environment.');"
+                                ],
+                                "type": "text/javascript",
+                                "packages": {},
+                                "requests": {}
+                              }
+                            }
+                          ],
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "*/*"
+                              },
+                              {
+                                "key": "Referer",
+                                "value": "{{referer}}",
+                                "type": "text"
+                              },
+                              {
+                                "key": "Origin",
+                                "value": "{{origin}}",
+                                "type": "text"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n    \"email\": \"{{personalEmail}}\",\n    \"firstName\": \"{{bvnFirstName}}\",\n    \"otp\": \"{{emailOtp}}\",\n    \"phoneNumber\": \"{{bvnPhoneNumber}}\",\n    \"companyName\": \"{{randomCompanyName}}\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{customer_service_base_url}}/api/v1/onboarding/process/mail-verification-code",
+                              "host": [
+                                "{{customer_service_base_url}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "onboarding",
+                                "process",
+                                "mail-verification-code"
+                              ]
+                            },
+                            "description": "This API is used to validate otp sent to the customer supplied email"
+                          },
+                          "response": [
+                            {
+                              "name": "Validate otp sent to customer email",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "*/*"
+                                  },
+                                  {
+                                    "key": "Referer",
+                                    "value": "{{referer}}",
+                                    "type": "text"
+                                  },
+                                  {
+                                    "key": "Origin",
+                                    "value": "{{origin}}",
+                                    "type": "text"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n    \"email\": \"{{personalEmail}}\",\n    \"firstName\": \"{{bvnFirstName}}\",\n    \"otp\": \"{{emailOtp}}\",\n    \"phoneNumber\": \"{{bvnPhoneNumber}}\",\n    \"companyName\": \"{{randomCompanyName}}\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/onboarding/process/mail-verification-code",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "onboarding",
+                                    "process",
+                                    "mail-verification-code"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "Text",
+                              "header": [
+                                {
+                                  "key": "Server",
+                                  "value": "nginx/1.24.0 (Ubuntu)"
+                                },
+                                {
+                                  "key": "Date",
+                                  "value": "Fri, 22 May 2026 18:23:25 GMT"
+                                },
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                },
+                                {
+                                  "key": "Content-Length",
+                                  "value": "229"
+                                },
+                                {
+                                  "key": "Connection",
+                                  "value": "keep-alive"
+                                },
+                                {
+                                  "key": "Access-Control-Allow-Origin",
+                                  "value": "*"
+                                },
+                                {
+                                  "key": "Access-Control-Allow-Methods",
+                                  "value": "POST,GET,PUT,DELETE,PATCH,HEAD"
+                                },
+                                {
+                                  "key": "Access-Control-Allow-Headers",
+                                  "value": "Content-Type,Access-Control-Allow-Headers,Access-Control-Allow-Origin,Access-Control-Expose-Headers,Content-Disposition,Authorization,Access-Control-Allow-Methods,X-Requested-With,request-id,x-request-encrypted"
+                                },
+                                {
+                                  "key": "Access-Control-Expose-Headers",
+                                  "value": "Content-Disposition,response-id,File-type"
+                                },
+                                {
+                                  "key": "Access-Control-Allow-Credentials",
+                                  "value": "true"
+                                },
+                                {
+                                  "key": "X-Content-Type-Options",
+                                  "value": "nosniff"
+                                },
+                                {
+                                  "key": "X-XSS-Protection",
+                                  "value": "0"
+                                },
+                                {
+                                  "key": "Cache-Control",
+                                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                                },
+                                {
+                                  "key": "Pragma",
+                                  "value": "no-cache"
+                                },
+                                {
+                                  "key": "Expires",
+                                  "value": "0"
+                                },
+                                {
+                                  "key": "X-Frame-Options",
+                                  "value": "DENY"
+                                },
+                                {
+                                  "key": "response-id",
+                                  "value": "20LY3526BFTE05LIZ322OROD"
+                                }
+                              ],
+                              "cookie": [],
+                              "body": "{\n    \"response\": \"ntXQApjR/b0fqJVVnqtyglBBcBWUhJzUI1MpJZZaIyGu8+zfqHa3l4bL7wCwxztR1eP0SAw2CiiS+fwkYOuhm0/Aq3qfJ1ldbkPDEdoFtbkvvRDHNjXlRUHERIyDpZRL8cWrngdR1fBWLrBpJynI5SNw6Vv8GbPloLy9uA1LOvs=\",\n    \"key\": \"3PrwSR1rj1dvoAmJjX1ACcdimNhy\"\n}"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "create",
+                      "item": [
+                        {
+                          "name": "Invite a user to the system, this module goes through maker checker process.",
+                          "event": [
+                            {
+                              "listen": "test",
+                              "script": {
+                                "exec": [
+                                  "// \u2500\u2500 Create Customer \u2014 Test Script \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+                                  "\r",
+                                  "const plaintext = pm.environment.get('DECRYPTED_RESPONSE');\r",
+                                  "let json;\r",
+                                  "\r",
+                                  "// \u2500\u2500 0. Parse decrypted response \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+                                  "try {\r",
+                                  "  json = JSON.parse(plaintext);\r",
+                                  "} catch (e) {\r",
+                                  "  pm.test('Response is valid JSON', () =>\r",
+                                  "    pm.expect.fail('Could not parse decrypted response: ' + e.message)\r",
+                                  "  );\r",
+                                  "  return;\r",
+                                  "}\r",
+                                  "\r",
+                                  "// \u2500\u2500 1. Status Code \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+                                  "pm.test('Status code is 200 Created', () => {\r",
+                                  "  pm.expect(pm.response.code).to.equal(200);\r",
+                                  "});\r",
+                                  "\r",
+                                  "// \u2500\u2500 2. Response Time \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+                                  "pm.test('Response time is under 1500ms (p95 threshold)', () => {\r",
+                                  "  pm.expect(pm.response.responseTime).to.be.below(1500);\r",
+                                  "});\r",
+                                  "\r",
+                                  "// \u2500\u2500 3. Response Envelope \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+                                  "pm.test('Response envelope has all required fields', () => {\r",
+                                  "  pm.expect(json).to.have.all.keys('message', 'success', 'data', 'errors');\r",
+                                  "});\r",
+                                  "\r",
+                                  "pm.test('Success flag is true', () => {\r",
+                                  "  pm.expect(json.success).to.be.true;\r",
+                                  "});\r",
+                                  "\r",
+                                  "pm.test('Message confirms request was treated', () => {\r",
+                                  "  pm.expect(json.message).to.equal('Request Successfully Treated');\r",
+                                  "});\r",
+                                  "\r",
+                                  "pm.test('No errors returned', () => {\r",
+                                  "  pm.expect(json.errors).to.be.null;\r",
+                                  "});\r",
+                                  "\r",
+                                  "// \u2500\u2500 4. Business Logic \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+                                  "pm.test('Customer onboarded successfully', () => {\r",
+                                  "  pm.expect(json.data).to.equal('Customer onboarded successfully');\r",
+                                  "});\r",
+                                  "\r",
+                                  "// \u2500\u2500 5. Password Security (NDPA) \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+                                  "// Validates that the password is never echoed back in any form \u2014\r",
+                                  "// neither in the encrypted envelope nor the raw response body.\r",
+                                  "const password = pm.environment.get('password') || '';\r",
+                                  "const rawBody  = pm.response.text();\r",
+                                  "\r",
+                                  "// pm.test('Password is not exposed in decrypted response', () => {\r",
+                                  "//   pm.expect(plaintext).to.not.include(password,\r",
+                                  "//     'Password must not appear in decrypted response body');\r",
+                                  "// });\r",
+                                  "\r",
+                                  "// pm.test('Password is not exposed in raw response body', () => {\r",
+                                  "//   pm.expect(rawBody).to.not.include(password,\r",
+                                  "//     'Password must not appear in raw (encrypted) response body');\r",
+                                  "// });\r",
+                                  "\r",
+                                  "pm.test('Response does not contain a password field', () => {\r",
+                                  "  pm.expect(rawBody.toLowerCase()).to.not.match(/\"password\"\\s*:\\s*\"[^\"]+\"/,\r",
+                                  "    'Response must not echo back a password field');\r",
+                                  "});\r",
+                                  "\r",
+                                  "// \u2500\u2500 6. Cleanup \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+                                  "// const KEEP = new Set([\r",
+                                  "//   'baseUrl', 'referer', 'origin',\r",
+                                  "//   'username', 'password', 'personalEmail', 'authenticationType', 'deviceId',\r",
+                                  "//   'country', 'signUpType', 'orgCategory', 'assignedRole',\r",
+                                  "//   'bvnOtp', 'emailOtp', 'bvnFirstName', 'bvn', 'bvnLastName', 'deviceChannel', 'deviceOption',\r",
+                                  "// ]);\r",
+                                  "\r",
+                                  "// const allVariables = pm.environment.toObject();\r",
+                                  "// const cleared = [];\r",
+                                  "// const kept    = [];\r",
+                                  "\r",
+                                  "// Object.keys(allVariables).forEach(key => {\r",
+                                  "//   if (KEEP.has(key)) {\r",
+                                  "//     kept.push(key);\r",
+                                  "//   } else {\r",
+                                  "//     pm.environment.unset(key);\r",
+                                  "//     cleared.push(key);\r",
+                                  "//   }\r",
+                                  "// });\r",
+                                  "\r",
+                                  "// console.log('[Cleanup] Kept    :', kept.join(', '));\r",
+                                  "// console.log('[Cleanup] Cleared :', cleared.join(', '));\r",
+                                  "// console.log(`[Cleanup] Done \u2014 ${cleared.length} removed, ${kept.length} kept.`);"
+                                ],
+                                "type": "text/javascript",
+                                "packages": {},
+                                "requests": {}
+                              }
+                            }
+                          ],
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "*/*"
+                              },
+                              {
+                                "key": "Referer",
+                                "value": "{{referer}}",
+                                "type": "text"
+                              },
+                              {
+                                "key": "Origin",
+                                "value": "{{origin}}",
+                                "type": "text"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n    \"registrationCode\": \"{{registrationCode}}\",\n    \"bankOrganizationId\": \"\",\n    \"subDomain\": \"\",\n    \"customerPersonalDetailDTO\": {\n        \"username\": \"{{username}}\",\n        \"email\": \"{{personalEmail}}\",\n        \"firstName\": \"{{bvnFirstName}}\",\n        \"lastName\": \"{{bvnLastName}}\",\n        \"phoneNumber\": \"{{bvnPhoneNumber}}\",\n        \"referralCode\": \"\",\n        \"assignedRole\": \"{{assignedRole}}\",\n        \"password\": \"{{password}}\",\n        \"pin\": \"\",\n        \"organizationId\": \"\",\n        \"systemInitiated\": false,\n        \"signUpType\": \"{{signUpType}}\",\n        \"title\": \"{{title}}\",\n        \"dob\": \"{{bvnDob}}\",\n        \"address\": \"{{address}}\",\n        \"city\": \"{{city}}\",\n        \"state\": \"{{state}}\",\n        \"country\": \"{{country}}\",\n        \"stateOfOrigin\": \"{{stateOfOrigin}}\",\n        \"motherMaidenName\": \"{{motherMaidenName}}\",\n        \"bvn\": \"{{bvn}}\",\n        \"validationRef\": null\n    },\n    \"customerBusinessDetailDTO\": {\n        \"organizationName\": \"{{randomCompanyName}}\",\n        \"organizationEmail\": \"{{orgEmail}}\",\n        \"organizationPhoneNumber\": \"{{orgPhone}}\",\n        \"registrationNumber\": \"{{regNumber}}\",\n        \"tin\": \"{{tin}}\",\n        \"registrationDate\": \"{{regDate}}\",\n        \"nature\": \"{{orgNature}}\",\n        \"address\": \"{{orgAddress}}\",\n        \"category\": \"{{orgCategory}}\"\n    }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{customer_service_base_url}}/api/v1/onboarding/process/create",
+                              "host": [
+                                "{{customer_service_base_url}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "onboarding",
+                                "process",
+                                "create"
+                              ]
+                            },
+                            "description": "This API is used to invite a user to the system, it sends an invite mail to the user."
+                          },
+                          "response": [
+                            {
+                              "name": "Invite a user to the system, this module goes through maker checker process.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "*/*"
+                                  },
+                                  {
+                                    "key": "Referer",
+                                    "value": "{{referer}}",
+                                    "type": "text"
+                                  },
+                                  {
+                                    "key": "Origin",
+                                    "value": "{{origin}}",
+                                    "type": "text"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n    \"registrationCode\": \"{{registrationCode}}\",\n    \"bankOrganizationId\": \"\",\n    \"subDomain\": \"\",\n    \"customerPersonalDetailDTO\": {\n        \"username\": \"{{username}}\",\n        \"email\": \"{{personalEmail}}\",\n        \"firstName\": \"{{bvnFirstName}}\",\n        \"lastName\": \"{{bvnLastName}}\",\n        \"phoneNumber\": \"{{bvnPhoneNumber}}\",\n        \"referralCode\": \"\",\n        \"assignedRole\": \"{{assignedRole}}\",\n        \"password\": \"{{password}}\",\n        \"pin\": \"\",\n        \"organizationId\": \"\",\n        \"systemInitiated\": false,\n        \"signUpType\": \"{{signUpType}}\",\n        \"title\": \"{{title}}\",\n        \"dob\": \"{{bvnDob}}\",\n        \"address\": \"{{address}}\",\n        \"city\": \"{{city}}\",\n        \"state\": \"{{state}}\",\n        \"country\": \"{{country}}\",\n        \"stateOfOrigin\": \"{{stateOfOrigin}}\",\n        \"motherMaidenName\": \"{{motherMaidenName}}\",\n        \"bvn\": \"{{bvn}}\",\n        \"validationRef\": null\n    },\n    \"customerBusinessDetailDTO\": {\n        \"organizationName\": \"{{randomCompanyName}}\",\n        \"organizationEmail\": \"{{orgEmail}}\",\n        \"organizationPhoneNumber\": \"{{orgPhone}}\",\n        \"registrationNumber\": \"{{regNumber}}\",\n        \"tin\": \"{{tin}}\",\n        \"registrationDate\": \"{{regDate}}\",\n        \"nature\": \"{{orgNature}}\",\n        \"address\": \"{{orgAddress}}\",\n        \"category\": \"{{orgCategory}}\"\n    }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/onboarding/process/create",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "onboarding",
+                                    "process",
+                                    "create"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "Text",
+                              "header": [
+                                {
+                                  "key": "Server",
+                                  "value": "nginx/1.24.0 (Ubuntu)"
+                                },
+                                {
+                                  "key": "Date",
+                                  "value": "Fri, 22 May 2026 18:23:34 GMT"
+                                },
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                },
+                                {
+                                  "key": "Content-Length",
+                                  "value": "229"
+                                },
+                                {
+                                  "key": "Connection",
+                                  "value": "keep-alive"
+                                },
+                                {
+                                  "key": "Access-Control-Allow-Origin",
+                                  "value": "*"
+                                },
+                                {
+                                  "key": "Access-Control-Allow-Methods",
+                                  "value": "POST,GET,PUT,DELETE,PATCH,HEAD"
+                                },
+                                {
+                                  "key": "Access-Control-Allow-Headers",
+                                  "value": "Content-Type,Access-Control-Allow-Headers,Access-Control-Allow-Origin,Access-Control-Expose-Headers,Content-Disposition,Authorization,Access-Control-Allow-Methods,X-Requested-With,request-id,x-request-encrypted"
+                                },
+                                {
+                                  "key": "Access-Control-Expose-Headers",
+                                  "value": "Content-Disposition,response-id,File-type"
+                                },
+                                {
+                                  "key": "Access-Control-Allow-Credentials",
+                                  "value": "true"
+                                },
+                                {
+                                  "key": "X-Content-Type-Options",
+                                  "value": "nosniff"
+                                },
+                                {
+                                  "key": "X-XSS-Protection",
+                                  "value": "0"
+                                },
+                                {
+                                  "key": "Cache-Control",
+                                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                                },
+                                {
+                                  "key": "Pragma",
+                                  "value": "no-cache"
+                                },
+                                {
+                                  "key": "Expires",
+                                  "value": "0"
+                                },
+                                {
+                                  "key": "X-Frame-Options",
+                                  "value": "DENY"
+                                },
+                                {
+                                  "key": "response-id",
+                                  "value": "208T0F26PP3W05XF3Y22V36M"
+                                }
+                              ],
+                              "cookie": [],
+                              "body": "{\n    \"response\": \"yytvNvxL7Tn+8oEyEHH/jGjgBlA7kTmmVJaL0K/+7gxEyCrhBmHEk9UxY8WRarDLmOc5ivcPEutoEQfHGSWt+VecrkNbuFxbHSu5r9aKTa5BCH/I+9RN2TlJhf92+qPEW2X5riirtFBMnBuPJ+FzSeFrL4ECR+xtkJX40ujz7eI=\",\n    \"key\": \"PgrOAQAJuGTzgQHs1B8JPjV9xi9l\"\n}"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "authentication",
+              "item": [
+                {
+                  "name": "process",
+                  "item": [
+                    {
+                      "name": "device-registration",
+                      "item": [
+                        {
+                          "name": "init",
+                          "item": [
+                            {
+                              "name": "init device registration",
+                              "event": [
+                                {
+                                  "listen": "test",
+                                  "script": {
+                                    "exec": [
+                                      "// \u2500\u2500 Generate random device & location details for next request \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+                                      "\r",
+                                      "// -- Device ID (simulates a web/mobile device fingerprint) --\r",
+                                      "const deviceSegment = () => Math.random().toString(36).substring(2, 10).toUpperCase();\r",
+                                      "const deviceId      = `${deviceSegment()}-${deviceSegment()}-${deviceSegment()}`;\r",
+                                      "\r",
+                                      "// -- Device Name --\r",
+                                      "const browsers  = ['Chrome', 'Firefox', 'Safari', 'Edge', 'Opera'];\r",
+                                      "const os        = ['Windows 11', 'macOS Ventura', 'Ubuntu 22.04', 'Android 14', 'iOS 17'];\r",
+                                      "const browser   = browsers[Math.floor(Math.random() * browsers.length)];\r",
+                                      "const system    = os[Math.floor(Math.random() * os.length)];\r",
+                                      "const deviceName = `${browser} on ${system}`;\r",
+                                      "\r",
+                                      "// -- Nigerian coordinates (bounding box: lat 4.2\u201313.9, lng 2.7\u201314.7) --\r",
+                                      "const latitude  = (Math.random() * (13.9  - 4.2)  + 4.2 ).toFixed(6);\r",
+                                      "const longitude = (Math.random() * (14.7  - 2.7)  + 2.7 ).toFixed(6);\r",
+                                      "\r",
+                                      "// -- Nigerian ISP IP ranges (realistic private/public ranges) --\r",
+                                      "const ipRanges = [\r",
+                                      "  () => `197.210.${rand(0,255)}.${rand(1,254)}`,   // MTN Nigeria\r",
+                                      "  () => `41.58.${rand(0,255)}.${rand(1,254)}`,      // Airtel Nigeria\r",
+                                      "  () => `105.112.${rand(0,255)}.${rand(1,254)}`,    // Glo Nigeria\r",
+                                      "  () => `197.255.${rand(0,255)}.${rand(1,254)}`,    // 9mobile Nigeria\r",
+                                      "  () => `154.120.${rand(0,255)}.${rand(1,254)}`,    // Spectranet\r",
+                                      "];\r",
+                                      "\r",
+                                      "function rand(min, max) {\r",
+                                      "  return Math.floor(Math.random() * (max - min + 1)) + min;\r",
+                                      "}\r",
+                                      "\r",
+                                      "const ipAddress = ipRanges[Math.floor(Math.random() * ipRanges.length)]();\r",
+                                      "\r",
+                                      "// -- Save to environment --\r",
+                                      "pm.environment.set('deviceId',   deviceId);\r",
+                                      "pm.environment.set('deviceName', deviceName);\r",
+                                      "pm.environment.set('latitude',   latitude);\r",
+                                      "pm.environment.set('longitude',  longitude);\r",
+                                      "pm.environment.set('ipAddress',  ipAddress);\r",
+                                      "\r",
+                                      "// console.log('[Post-response] deviceId   :', deviceId);\r",
+                                      "// console.log('[Post-response] deviceName :', deviceName);\r",
+                                      "// console.log('[Post-response] latitude   :', latitude);\r",
+                                      "// console.log('[Post-response] longitude  :', longitude);\r",
+                                      "// console.log('[Post-response] ipAddress  :', ipAddress);"
+                                    ],
+                                    "type": "text/javascript",
+                                    "packages": {},
+                                    "requests": {}
+                                  }
+                                }
+                              ],
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "*/*"
+                                  },
+                                  {
+                                    "key": "Referer",
+                                    "value": "{{referer}}",
+                                    "type": "text"
+                                  },
+                                  {
+                                    "key": "Referer",
+                                    "value": "{{referer}}",
+                                    "type": "text"
+                                  },
+                                  {
+                                    "key": "Origin",
+                                    "value": "{{origin}}",
+                                    "type": "text"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json",
+                                    "type": "text"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{customer_service_base_url}}/api/v1/authentication/process/device-registration/init?username={{username}}",
+                                  "host": [
+                                    "{{customer_service_base_url}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "authentication",
+                                    "process",
+                                    "device-registration",
+                                    "init"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "username",
+                                      "value": "{{username}}"
+                                    }
+                                  ]
+                                },
+                                "description": "This API performs an action for device registration"
+                              },
+                              "response": [
+                                {
+                                  "name": "init device registration",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "*/*"
+                                      },
+                                      {
+                                        "key": "Referer",
+                                        "value": "{{referer}}",
+                                        "type": "text"
+                                      },
+                                      {
+                                        "key": "Referer",
+                                        "value": "{{referer}}",
+                                        "type": "text"
+                                      },
+                                      {
+                                        "key": "Origin",
+                                        "value": "{{origin}}",
+                                        "type": "text"
+                                      },
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json",
+                                        "type": "text"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/authentication/process/device-registration/init?username={{username}}",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "authentication",
+                                        "process",
+                                        "device-registration",
+                                        "init"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "username",
+                                          "value": "{{username}}"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "Text",
+                                  "header": [
+                                    {
+                                      "key": "Server",
+                                      "value": "nginx/1.24.0 (Ubuntu)"
+                                    },
+                                    {
+                                      "key": "Date",
+                                      "value": "Fri, 22 May 2026 18:23:43 GMT"
+                                    },
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    },
+                                    {
+                                      "key": "Content-Length",
+                                      "value": "214"
+                                    },
+                                    {
+                                      "key": "Connection",
+                                      "value": "keep-alive"
+                                    },
+                                    {
+                                      "key": "Access-Control-Allow-Origin",
+                                      "value": "*"
+                                    },
+                                    {
+                                      "key": "Access-Control-Allow-Methods",
+                                      "value": "POST,GET,PUT,DELETE,PATCH,HEAD"
+                                    },
+                                    {
+                                      "key": "Access-Control-Allow-Headers",
+                                      "value": "Content-Type,Access-Control-Allow-Headers,Access-Control-Allow-Origin,Access-Control-Expose-Headers,Content-Disposition,Authorization,Access-Control-Allow-Methods,X-Requested-With,request-id,x-request-encrypted"
+                                    },
+                                    {
+                                      "key": "Access-Control-Expose-Headers",
+                                      "value": "Content-Disposition,response-id,File-type"
+                                    },
+                                    {
+                                      "key": "Access-Control-Allow-Credentials",
+                                      "value": "true"
+                                    },
+                                    {
+                                      "key": "X-Content-Type-Options",
+                                      "value": "nosniff"
+                                    },
+                                    {
+                                      "key": "X-XSS-Protection",
+                                      "value": "0"
+                                    },
+                                    {
+                                      "key": "Cache-Control",
+                                      "value": "no-cache, no-store, max-age=0, must-revalidate"
+                                    },
+                                    {
+                                      "key": "Pragma",
+                                      "value": "no-cache"
+                                    },
+                                    {
+                                      "key": "Expires",
+                                      "value": "0"
+                                    },
+                                    {
+                                      "key": "X-Frame-Options",
+                                      "value": "DENY"
+                                    },
+                                    {
+                                      "key": "response-id",
+                                      "value": "20HWJ426YUNV05ZH7H22KY2P"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "body": "{\n    \"response\": \"89wt+3QsheUNY1QEn/qxR3IcT3HgR55wtSM08u0pUNQ5bui3UMsSKUGnoSu6zZiH/Fiob8Im3mNbGEDNyTbLAnrYQ+V47w0IBQ6pfXToNEOa/z1C+CcTquaCgjOjXI1sD4ZBx2iu/K/5j1tA4oo4mg==\",\n    \"key\": \"GYCOCMUsuvbyv4blCjfKXh1jzyPy\"\n}"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "name": "validation",
+                          "item": [
+                            {
+                              "name": "validate device registration",
+                              "event": [
+                                {
+                                  "listen": "test",
+                                  "script": {
+                                    "exec": [
+                                      "// \u2500\u2500 Extract encypted response data to environment \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+                                      "const plaintext = pm.environment.get('DECRYPTED_RESPONSE');\r",
+                                      "let json;\r",
+                                      "\r",
+                                      "try {\r",
+                                      "    json = JSON.parse(plaintext);\r",
+                                      "} catch (e) {\r",
+                                      "    // console.error('[Test] Could not parse DECRYPTED_RESPONSE:', e.message);\r",
+                                      "    return;\r",
+                                      "}\r",
+                                      "\r",
+                                      "var data = json.data || {};\r",
+                                      "\r",
+                                      "pm.environment.set('deviceRegistrationCode', data.code || '');\r",
+                                      "\r",
+                                      "// console.log('[Test] Data saved to environment.');\r",
+                                      "\r",
+                                      ""
+                                    ],
+                                    "type": "text/javascript",
+                                    "packages": {},
+                                    "requests": {}
+                                  }
+                                }
+                              ],
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "*/*"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json",
+                                    "type": "text"
+                                  },
+                                  {
+                                    "key": "Referer",
+                                    "value": "{{referer}}",
+                                    "type": "text"
+                                  },
+                                  {
+                                    "key": "Origin",
+                                    "value": "{{origin}}",
+                                    "type": "text"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{customer_service_base_url}}/api/v1/authentication/process/device-registration/validation?username={{username}}&otp={{emailOtp}}",
+                                  "host": [
+                                    "{{customer_service_base_url}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "authentication",
+                                    "process",
+                                    "device-registration",
+                                    "validation"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "username",
+                                      "value": "{{username}}"
+                                    },
+                                    {
+                                      "key": "otp",
+                                      "value": "{{emailOtp}}"
+                                    }
+                                  ]
+                                },
+                                "description": "This API performs an action for device registration"
+                              },
+                              "response": [
+                                {
+                                  "name": "validate device registration",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "*/*"
+                                      },
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json",
+                                        "type": "text"
+                                      },
+                                      {
+                                        "key": "Referer",
+                                        "value": "{{referer}}",
+                                        "type": "text"
+                                      },
+                                      {
+                                        "key": "Origin",
+                                        "value": "{{origin}}",
+                                        "type": "text"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/authentication/process/device-registration/validation?username={{username}}&otp={{emailOtp}}",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "authentication",
+                                        "process",
+                                        "device-registration",
+                                        "validation"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "username",
+                                          "value": "{{username}}"
+                                        },
+                                        {
+                                          "key": "otp",
+                                          "value": "{{emailOtp}}"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "Text",
+                                  "header": [
+                                    {
+                                      "key": "Server",
+                                      "value": "nginx/1.24.0 (Ubuntu)"
+                                    },
+                                    {
+                                      "key": "Date",
+                                      "value": "Fri, 22 May 2026 18:23:47 GMT"
+                                    },
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    },
+                                    {
+                                      "key": "Content-Length",
+                                      "value": "214"
+                                    },
+                                    {
+                                      "key": "Connection",
+                                      "value": "keep-alive"
+                                    },
+                                    {
+                                      "key": "Access-Control-Allow-Origin",
+                                      "value": "*"
+                                    },
+                                    {
+                                      "key": "Access-Control-Allow-Methods",
+                                      "value": "POST,GET,PUT,DELETE,PATCH,HEAD"
+                                    },
+                                    {
+                                      "key": "Access-Control-Allow-Headers",
+                                      "value": "Content-Type,Access-Control-Allow-Headers,Access-Control-Allow-Origin,Access-Control-Expose-Headers,Content-Disposition,Authorization,Access-Control-Allow-Methods,X-Requested-With,request-id,x-request-encrypted"
+                                    },
+                                    {
+                                      "key": "Access-Control-Expose-Headers",
+                                      "value": "Content-Disposition,response-id,File-type"
+                                    },
+                                    {
+                                      "key": "Access-Control-Allow-Credentials",
+                                      "value": "true"
+                                    },
+                                    {
+                                      "key": "X-Content-Type-Options",
+                                      "value": "nosniff"
+                                    },
+                                    {
+                                      "key": "X-XSS-Protection",
+                                      "value": "0"
+                                    },
+                                    {
+                                      "key": "Cache-Control",
+                                      "value": "no-cache, no-store, max-age=0, must-revalidate"
+                                    },
+                                    {
+                                      "key": "Pragma",
+                                      "value": "no-cache"
+                                    },
+                                    {
+                                      "key": "Expires",
+                                      "value": "0"
+                                    },
+                                    {
+                                      "key": "X-Frame-Options",
+                                      "value": "DENY"
+                                    },
+                                    {
+                                      "key": "response-id",
+                                      "value": "20BTWC26WYEL05M0HJ22A9LD"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "body": "{\n    \"response\": \"M0GsnKSD/Ss54PoELKw1KtmDXQintAIrXqwQTLl2/G5bQc/8oQ/rOJU770qMLjalKZNALAbvbTNbe/HDtfveuORCB/0kv29dnFcJILt8CVENhttq+K8avM5zZZ42N/0t78JUIE5hCjzUutwMXAt/zw==\",\n    \"key\": \"pit99vadofwQLlOSmDmne8WqEwpo\"\n}"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "name": "complete",
+                          "item": [
+                            {
+                              "name": "device registration",
+                              "event": [
+                                {
+                                  "listen": "test",
+                                  "script": {
+                                    "exec": [
+                                      "// \u2500\u2500 Environment Cleanup Script \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+                                      "// Clears all dynamically generated test variables.\r",
+                                      "// Whitelist defines what to keep \u2014 everything else is removed.\r",
+                                      "\r",
+                                      "// const KEEP = new Set([\r",
+                                      "//     // Infrastructure\r",
+                                      "//     'baseUrl',\r",
+                                      "//     'referer',\r",
+                                      "//     'origin',\r",
+                                      "\r",
+                                      "\r",
+                                      "\r",
+                                      "\r",
+                                      "\r",
+                                      "//     // Auth credentials\r",
+                                      "//     'username',\r",
+                                      "//     'password',\r",
+                                      "//     'personalEmail',\r",
+                                      "//     'authenticationType',\r",
+                                      "//     'deviceId',\r",
+                                      "\r",
+                                      "//     // Hardcoded static values\r",
+                                      "//     'country',\r",
+                                      "//     'signUpType',\r",
+                                      "//     'orgCategory',\r",
+                                      "//     'assignedRole',\r",
+                                      "//     'bvnOtp',\r",
+                                      "//     'emailOtp',\r",
+                                      "//     'deviceChannel',\r",
+                                      "//     'bvnFirstName',\r",
+                                      "//     'bvnLastName',\r",
+                                      "//     'bvn',\r",
+                                      "//     'deviceOption'\r",
+                                      "\r",
+                                      "// ]);\r",
+                                      "\r",
+                                      "// const allVariables = pm.environment.toObject();\r",
+                                      "// const cleared = [];\r",
+                                      "// const kept = [];\r",
+                                      "\r",
+                                      "// Object.keys(allVariables).forEach(key => {\r",
+                                      "//     if (KEEP.has(key)) {\r",
+                                      "//         kept.push(key);\r",
+                                      "//     } else {\r",
+                                      "//         pm.environment.unset(key);\r",
+                                      "//         cleared.push(key);\r",
+                                      "//     }\r",
+                                      "// });\r",
+                                      "\r",
+                                      "// console.log('[Cleanup] Variables kept    :', kept.join(', '));\r",
+                                      "// console.log('[Cleanup] Variables cleared :', cleared.join(', '));\r",
+                                      "// console.log(`[Cleanup] Done \u2014 ${cleared.length} variable(s) removed, ${kept.length} kept.`);"
+                                    ],
+                                    "type": "text/javascript",
+                                    "packages": {},
+                                    "requests": {}
+                                  }
+                                }
+                              ],
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "*/*"
+                                  },
+                                  {
+                                    "key": "Referer",
+                                    "value": "{{referer}}",
+                                    "type": "text"
+                                  },
+                                  {
+                                    "key": "Origin",
+                                    "value": "{{origin}}",
+                                    "type": "text"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n    \"deviceId\": \"{{deviceId}}\",\n    \"deviceName\": \"{{deviceName}}\",\n    \"channel\": \"{{deviceChannel}}\",\n    \"longitude\": \"{{longitude}}\",\n    \"latitude\": \"{{latitude}}\",\n    \"ipAddress\": \"{{ipAddress}}\",\n    \"deviceOption\": \"{{deviceOption}}\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{customer_service_base_url}}/api/v1/authentication/process/device-registration/complete?username={{username}}&code={{deviceRegistrationCode}}",
+                                  "host": [
+                                    "{{customer_service_base_url}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "authentication",
+                                    "process",
+                                    "device-registration",
+                                    "complete"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "username",
+                                      "value": "{{username}}"
+                                    },
+                                    {
+                                      "key": "code",
+                                      "value": "{{deviceRegistrationCode}}"
+                                    }
+                                  ]
+                                },
+                                "description": "This API performs an action for device registration"
+                              },
+                              "response": [
+                                {
+                                  "name": "device registration",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "*/*"
+                                      },
+                                      {
+                                        "key": "Referer",
+                                        "value": "{{referer}}",
+                                        "type": "text"
+                                      },
+                                      {
+                                        "key": "Origin",
+                                        "value": "{{origin}}",
+                                        "type": "text"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n    \"deviceId\": \"{{deviceId}}\",\n    \"deviceName\": \"{{deviceName}}\",\n    \"channel\": \"{{deviceChannel}}\",\n    \"longitude\": \"{{longitude}}\",\n    \"latitude\": \"{{latitude}}\",\n    \"ipAddress\": \"{{ipAddress}}\",\n    \"deviceOption\": \"{{deviceOption}}\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/authentication/process/device-registration/complete?username={{username}}&code={{deviceRegistrationCode}}",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "authentication",
+                                        "process",
+                                        "device-registration",
+                                        "complete"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "username",
+                                          "value": "{{username}}"
+                                        },
+                                        {
+                                          "key": "code",
+                                          "value": "{{deviceRegistrationCode}}"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "Text",
+                                  "header": [
+                                    {
+                                      "key": "Server",
+                                      "value": "nginx/1.24.0 (Ubuntu)"
+                                    },
+                                    {
+                                      "key": "Date",
+                                      "value": "Fri, 22 May 2026 18:23:51 GMT"
+                                    },
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    },
+                                    {
+                                      "key": "Content-Length",
+                                      "value": "229"
+                                    },
+                                    {
+                                      "key": "Connection",
+                                      "value": "keep-alive"
+                                    },
+                                    {
+                                      "key": "Access-Control-Allow-Origin",
+                                      "value": "*"
+                                    },
+                                    {
+                                      "key": "Access-Control-Allow-Methods",
+                                      "value": "POST,GET,PUT,DELETE,PATCH,HEAD"
+                                    },
+                                    {
+                                      "key": "Access-Control-Allow-Headers",
+                                      "value": "Content-Type,Access-Control-Allow-Headers,Access-Control-Allow-Origin,Access-Control-Expose-Headers,Content-Disposition,Authorization,Access-Control-Allow-Methods,X-Requested-With,request-id,x-request-encrypted"
+                                    },
+                                    {
+                                      "key": "Access-Control-Expose-Headers",
+                                      "value": "Content-Disposition,response-id,File-type"
+                                    },
+                                    {
+                                      "key": "Access-Control-Allow-Credentials",
+                                      "value": "true"
+                                    },
+                                    {
+                                      "key": "X-Content-Type-Options",
+                                      "value": "nosniff"
+                                    },
+                                    {
+                                      "key": "X-XSS-Protection",
+                                      "value": "0"
+                                    },
+                                    {
+                                      "key": "Cache-Control",
+                                      "value": "no-cache, no-store, max-age=0, must-revalidate"
+                                    },
+                                    {
+                                      "key": "Pragma",
+                                      "value": "no-cache"
+                                    },
+                                    {
+                                      "key": "Expires",
+                                      "value": "0"
+                                    },
+                                    {
+                                      "key": "X-Frame-Options",
+                                      "value": "DENY"
+                                    },
+                                    {
+                                      "key": "response-id",
+                                      "value": "207CK2262LN805Z12A22X2LA"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "body": "{\n    \"response\": \"0rN9UjqXrN5Lq/9L86OBkPTTZQ7BSa07NiAXKsrWmc8RkR9PQoiRnmZb3iKCrQDW1AobsJRKbyUgqSJeZhoVttr6wTagwj+VwRVBSLbJUgqvm5gkbf2lOeKbNguOKqg04+7z++MujwLY5dznLXbhzU/huArhhZDx0Ax6rNQRW4M=\",\n    \"key\": \"ypAuaquWVRaFZmwdpVBpCmJeMQh8\"\n}"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "login",
+                      "item": [
+                        {
+                          "name": "Authenticate a user",
+                          "event": [
+                            {
+                              "listen": "test",
+                              "script": {
+                                "exec": [
+                                  "// \u2500\u2500 Login \u2014 Test Script \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+                                  "\r",
+                                  "const plaintext = pm.environment.get('DECRYPTED_RESPONSE');\r",
+                                  "let json;\r",
+                                  "\r",
+                                  "// \u2500\u2500 0. Parse decrypted response \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+                                  "try {\r",
+                                  "    json = JSON.parse(plaintext);\r",
+                                  "} catch (e) {\r",
+                                  "    pm.test('Response is valid JSON', () =>\r",
+                                  "        pm.expect.fail('Could not parse decrypted response: ' + e.message)\r",
+                                  "    );\r",
+                                  "    return;\r",
+                                  "}\r",
+                                  "\r",
+                                  "var data = json.data || {};\r",
+                                  "const info = data.additionalInformation || {};\r",
+                                  "const rawBody = pm.response.text();\r",
+                                  "\r",
+                                  "// \u2500\u2500 1. Status Code & Response Time \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+                                  "pm.test('Status code is 200 OK', () => {\r",
+                                  "    pm.expect(pm.response.code).to.equal(200);\r",
+                                  "});\r",
+                                  "\r",
+                                  "pm.test('Response time is under 1500ms (p95 threshold)', () => {\r",
+                                  "    pm.expect(pm.response.responseTime).to.be.below(1500);\r",
+                                  "});\r",
+                                  "\r",
+                                  "// \u2500\u2500 2. Response Envelope \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+                                  "pm.test('Response envelope has all required fields', () => {\r",
+                                  "    pm.expect(json).to.have.all.keys('message', 'success', 'data', 'errors');\r",
+                                  "});\r",
+                                  "\r",
+                                  "pm.test('Authentication was successful', () => {\r",
+                                  "    pm.expect(json.success).to.be.true;\r",
+                                  "    pm.expect(json.message).to.equal('Authentication Successful');\r",
+                                  "});\r",
+                                  "\r",
+                                  "pm.test('No errors returned', () => {\r",
+                                  "    pm.expect(json.errors).to.be.null;\r",
+                                  "});\r",
+                                  "\r",
+                                  "// \u2500\u2500 3. Access Token \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+                                  "pm.test('Access token is present and non-empty', () => {\r",
+                                  "    pm.expect(data).to.have.property('accessToken');\r",
+                                  "    pm.expect(data.accessToken).to.be.a('string').and.not.empty;\r",
+                                  "});\r",
+                                  "\r",
+                                  "pm.test('Access token is a valid JWT (3-part structure)', () => {\r",
+                                  "    const parts = data.accessToken.split('.');\r",
+                                  "    pm.expect(parts).to.have.lengthOf(3, 'JWT must have header.payload.signature');\r",
+                                  "});\r",
+                                  "\r",
+                                  "// Store token for subsequent requests \u2014 never logged (NDPA)\r",
+                                  "if (data.accessToken) {\r",
+                                  "    pm.environment.set('bearerToken', data.accessToken);\r",
+                                  "}\r",
+                                  "\r",
+                                  "// \u2500\u2500 4. Additional Information Structure \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+                                  "pm.test('additionalInformation object is present and non-empty', () => {\r",
+                                  "    pm.expect(data).to.have.property('additionalInformation');\r",
+                                  "    pm.expect(info).to.be.an('object').and.not.empty;\r",
+                                  "});\r",
+                                  "\r",
+                                  "pm.test('additionalInformation has all expected fields', () => {\r",
+                                  "    pm.expect(info).to.have.all.keys(\r",
+                                  "        'role', 'proceed', 'organizationName', 'noSqConfigured', 'profileActivated', 'organizationId',\r",
+                                  "        'firstName', 'noPin', 'bankOrganizationId',\r",
+                                  "        'name', 'email', 'username'\r",
+                                  "    );\r",
+                                  "});\r",
+                                  "\r",
+                                  "// \u2500\u2500 5. Store IDs for subsequent requests (NDPA \u2014 not logged) \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+                                  "if (info.organizationName) {\r",
+                                  "    pm.environment.set('organizationName', info.organizationName);\r",
+                                  "}\r",
+                                  "\r",
+                                  "if (info.organizationId) {\r",
+                                  "    pm.environment.set('organizationId', info.organizationId);\r",
+                                  "}\r",
+                                  "\r",
+                                  "if (info.bankOrganizationId) {\r",
+                                  "    pm.environment.set('bankOrganizationId', info.bankOrganizationId);\r",
+                                  "}\r",
+                                  "\r",
+                                  "// \u2500\u2500 6. Boolean String Flags \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+                                  "pm.test('Boolean flags are valid string values (\"true\" or \"false\")', () => {\r",
+                                  "    const booleanFields = ['proceed', 'noSqConfigured', 'profileActivated', 'noPin'];\r",
+                                  "    const allowed = ['true', 'false'];\r",
+                                  "    booleanFields.forEach(field => {\r",
+                                  "        pm.expect(allowed, `\"${field}\" must be \"true\" or \"false\"`).to.include(info[field]);\r",
+                                  "    });\r",
+                                  "});\r",
+                                  "\r",
+                                  "// \u2500\u2500 7. PII Fields \u2014 Presence and Type Only (NDPA) \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+                                  "pm.test('PII fields are present and non-empty strings', () => {\r",
+                                  "    ['firstName', 'name', 'email', 'username', 'role', 'organizationName'].forEach(field => {\r",
+                                  "        pm.expect(info[field], `\"${field}\" must be a non-empty string`)\r",
+                                  "            .to.be.a('string').and.not.empty;\r",
+                                  "    });\r",
+                                  "});\r",
+                                  "\r",
+                                  "pm.test('Email field is a valid email format', () => {\r",
+                                  "    pm.expect(info.email).to.match(/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/);\r",
+                                  "    // Value intentionally not logged (NDPA)\r",
+                                  "});\r",
+                                  "\r",
+                                  "// \u2500\u2500 8. IDs \u2014 Format Only (NDPA) \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+                                  "pm.test('organizationId is a non-empty string', () => {\r",
+                                  "    pm.expect(info.organizationId).to.be.a('string').and.not.empty;\r",
+                                  "});\r",
+                                  "\r",
+                                  "pm.test('bankOrganizationId is a non-empty string', () => {\r",
+                                  "    pm.expect(info.bankOrganizationId).to.be.a('string').and.not.empty;\r",
+                                  "});\r",
+                                  "\r",
+                                  "// \u2500\u2500 9. Last Login Date \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+                                  "// pm.test('lastLoginDate is a valid ISO 8601 timestamp', () => {\r",
+                                  "//     pm.expect(info.lastLoginDate).to.match(/^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}/);\r",
+                                  "//     pm.expect(new Date(info.lastLoginDate).toString()).to.not.equal('Invalid Date');\r",
+                                  "// });\r",
+                                  "\r",
+                                  "// pm.test('lastLoginDate is not a future date', () => {\r",
+                                  "//     pm.expect(new Date(info.lastLoginDate).getTime()).to.be.at.most(Date.now());\r",
+                                  "// });\r",
+                                  "\r",
+                                  "// \u2500\u2500 10. Password Security (NDPA) \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+                                  "const password = pm.environment.get('password') || '';\r",
+                                  "\r",
+                                  "// pm.test('Password is not exposed in decrypted response', () => {\r",
+                                  "//     pm.expect(plaintext).to.not.include(password,\r",
+                                  "//         'Password must not appear in decrypted response body');\r",
+                                  "// });\r",
+                                  "\r",
+                                  "// pm.test('Password is not exposed in raw response body', () => {\r",
+                                  "//     pm.expect(rawBody).to.not.include(password,\r",
+                                  "//         'Password must not appear in raw (encrypted) response body');\r",
+                                  "// });\r",
+                                  "\r",
+                                  "pm.test('Response does not contain a password field', () => {\r",
+                                  "    pm.expect(rawBody.toLowerCase()).to.not.match(/\"password\"\\s*:\\s*\"[^\"]+\"/,\r",
+                                  "        'Response must not echo back a password field');\r",
+                                  "});"
+                                ],
+                                "type": "text/javascript",
+                                "packages": {},
+                                "requests": {}
+                              }
+                            },
+                            {
+                              "listen": "prerequest",
+                              "script": {
+                                "exec": [
+                                  ""
+                                ],
+                                "type": "text/javascript",
+                                "packages": {},
+                                "requests": {}
+                              }
+                            }
+                          ],
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "*/*"
+                              },
+                              {
+                                "key": "Referer",
+                                "value": "{{referer}}",
+                                "type": "text"
+                              },
+                              {
+                                "key": "Origin",
+                                "value": "{{origin}}",
+                                "type": "text"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n    \"username\": \"{{username}}\",\n    \"email\": \"{{personalEmail}}\",\n    \"password\": \"{{password}}\",\n    \"deviceId\": \"{{deviceId}}\",\n    \"authenticationType\": \"{{authenticationType}}\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{customer_service_base_url}}/api/v1/authentication/process/login",
+                              "host": [
+                                "{{customer_service_base_url}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "authentication",
+                                "process",
+                                "login"
+                              ]
+                            },
+                            "description": "This API is used to authenticate a user."
+                          },
+                          "response": [
+                            {
+                              "name": "Authenticate a user",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "*/*"
+                                  },
+                                  {
+                                    "key": "Referer",
+                                    "value": "{{referer}}",
+                                    "type": "text"
+                                  },
+                                  {
+                                    "key": "Origin",
+                                    "value": "{{origin}}",
+                                    "type": "text"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n    \"username\": \"{{username}}\",\n    \"email\": \"{{personalEmail}}\",\n    \"password\": \"{{password}}\",\n    \"deviceId\": \"{{deviceId}}\",\n    \"authenticationType\": \"{{authenticationType}}\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/authentication/process/login",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "authentication",
+                                    "process",
+                                    "login"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "Text",
+                              "header": [
+                                {
+                                  "key": "Server",
+                                  "value": "nginx/1.24.0 (Ubuntu)"
+                                },
+                                {
+                                  "key": "Date",
+                                  "value": "Fri, 22 May 2026 18:23:55 GMT"
+                                },
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                },
+                                {
+                                  "key": "Content-Length",
+                                  "value": "2454"
+                                },
+                                {
+                                  "key": "Connection",
+                                  "value": "keep-alive"
+                                },
+                                {
+                                  "key": "Access-Control-Allow-Origin",
+                                  "value": "*"
+                                },
+                                {
+                                  "key": "Access-Control-Allow-Methods",
+                                  "value": "POST,GET,PUT,DELETE,PATCH,HEAD"
+                                },
+                                {
+                                  "key": "Access-Control-Allow-Headers",
+                                  "value": "Content-Type,Access-Control-Allow-Headers,Access-Control-Allow-Origin,Access-Control-Expose-Headers,Content-Disposition,Authorization,Access-Control-Allow-Methods,X-Requested-With,request-id,x-request-encrypted"
+                                },
+                                {
+                                  "key": "Access-Control-Expose-Headers",
+                                  "value": "Content-Disposition,response-id,File-type"
+                                },
+                                {
+                                  "key": "Access-Control-Allow-Credentials",
+                                  "value": "true"
+                                },
+                                {
+                                  "key": "X-Content-Type-Options",
+                                  "value": "nosniff"
+                                },
+                                {
+                                  "key": "X-XSS-Protection",
+                                  "value": "0"
+                                },
+                                {
+                                  "key": "Cache-Control",
+                                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                                },
+                                {
+                                  "key": "Pragma",
+                                  "value": "no-cache"
+                                },
+                                {
+                                  "key": "Expires",
+                                  "value": "0"
+                                },
+                                {
+                                  "key": "X-Frame-Options",
+                                  "value": "DENY"
+                                },
+                                {
+                                  "key": "response-id",
+                                  "value": "206V1226O9T405CT0H22DQMC"
+                                }
+                              ],
+                              "cookie": [],
+                              "body": "{\n    \"response\": \"Efq74l6fjXvwhtHGOw+ML4OtKAet8BYJnd2bi9/DC26T2yezBurUrHiVk7SHxpkrTrz82cq+YZU0TkG48uZwQX+TpmucjVvDJKkIfpCV+b4AnRuH7Slm2gKFZgi/o6yBn+dttc3JFlj8eV0Ny24RotJWstCLP3iXe6LLmRdrlfFwcejRRzViIQ/l6wK7ernwH532C6XQ12XGQ93E5Wvfyoey74T8Msch9f+B2PJ3jT80slD/AECfHpRerExknRH+kh4pUs2hYnjRPD3GMDKpS2e3cOuNiJBWXJgRejofYDCnYdkn0aYaCaINN7nuqzoPDGttPpy9/0R1mEF1eNTXdFH666LEae5SHYKUXTSakaGBb5iwVJA2R+ijRyLLJnlV9UWxbO8H0TSzsxOeqOOxHZSVI8wTXhOqTMuFKYn7S0ZAtqMbC3beQdL6FbsF4sZCdRLircLaGF+epGBHwE257+2zCHyPUuaDuitFm9vSMlzlNg/HzpywjNwdfHsEk5v+r0vZGD6GXi83kPgQgqgHRT4bxDkoDzMLJ+NTNxmZ9NYFbOIT2Acy3NZIRSVeXORCcu0LtJuWlzSOVj++mA1Oul560rju21L61bSlKlhza/euED0omrzYhvzs4tTZOEZkB66ewRfFLVIR9npyUOWs2YtakUrYzLQf1GMBhJx6KeFMZumowTbsO1tSfneMjuTH88XL61DyWolVJgjpVShQkNRdk2T/IvYE4SApNRvKcFMdOKfpoAu16hUwkqYFcB+ZRjlaHLzwFaNvvxEpkvhW6XxNy1AymgFUYge+qq2i2aKAlDkg+sTPh1GD7Dbn6yGj/WCkm5RfOzTdcFU+U+in34b2hDaLPjNDif7Zucs/YgmkvDBjrf2oX1XCg7xONxPmjcj3u+JU3kvG/8H4ijej38o9LBoc0rqn17MhbdXgp7N63oQRjwlIq4/jDhVHCeODkkKikl79ca5X7ieJz8eUjECUCeCZFeFw8qpabpJ5NPzBgKJ42sTDnPQIiFU2Qx0aLPlRdzPnU4ktZQfLvdCAstNpurv3ehAH5GP3QKT29Su/upmrsp0OwPztJSFPN5YrRtAAjILqQ/tymiQkgY3vpy61aQG7nSQAENi4w/iYWTNkksKivNsc0KXKuen54Whsga5lK8DqhQmwDUUemISTON104zVD6ILGwtEBSA2Ehxo+H6RjQ2mugLpyU75FpkEOIu6mQ5bP38K+3T1S2nSyg82d3jGMEdDLZY1Lsp52k8+KCpWVeLbrGJq/9PicU9+vsAkNur/j/zktdnsLBvHBuyxLvoOQfSt8QR9RW/Y/pJ30FTt9xiRyBC/tui2UmO0HakgAxSkf8qthXjDlokgCXvVRWqRLnLTgAHfx3hS/+blvxLtAS628dgGOXyYeJtH5+AkH9c81xwqfu0eN594eNH4Re0/9Qj6kZhwdfkHgqkSTok5woYbvUCZWQ0aRprGpC6hkJAChAR1/UmaGhRLioY7qUoMLa/tuejCpI0aNDCBQWJShM4tnkjB+yOWHtDxo6FVJQaESFNlltSJLU+n9r3jFw5vFxHrzVIzeHtJp2C4aB+ts44TQbycAcYJwoXlkAdYtQPtH1e9iYevqwZ3syzuimwu0reWp7kBrt01ILw68RmD3q4ZD2Mw2N+9ifAwjqmUfT1+QBu4sGFcGDy+2LDdUmOh0+GpDrxraBnlQrF720pXnmfx1vZ+fW/rTbgoI/0SS8OdotxFq8ALgCsxBQzn5Px46ZUu+78BaJJ8kx9Qbdvm+ds0ZltnVzD2oYN1pgnVfFwNRerCiz231XQVYEhSwL9GVC8oXEtNVaYUpATkYrXvyd5RIpWxBzWsq8I290xyt14yTyveNbRmjQYXI4ESmeOmB2fG9DAELXZkP01ltfF6y4RpLPqxzdMeukfN4T8UuJuHVHXKd95w3y1G9pfcYo/ilKLFQqOCe5v+reAZIoIp4y4B6rODMn8+7J0Rnrz85p1X4UViGC9d7JGnUkin41dI4JjFxa4NyZoyDjDjqEGQKOGY4dHTKKRZzC7g8G/Fral5rGx2Ld80nYDjbgVT9ECqeYdvGo5GotGx2ZNm/PVbQn9GZ5lkKbMhLrhKowwLb9q1q6iJJscRmoiyyV3o20RitqBp4OSy6b8rR39mffyHuNHgFMwMw05kmU6a0rKyFWH3oHYkyEmq6LUTy//4owtDXtF3kNGS2WL4K+x4HTREfGaF6ho6MCi4+cfkIDZzIFlMPaXAEBrG/Gka9diIFUd0hOXThsccBHXcMOYqaggmahGnODwcU1ac+W6x6Uwt5Jhh7Oj+tytcapPp/qMSZ2+uihUikxpVAbI8ey8iOct/8AumFuL/axtKvVLiJKe6ashQXepDQhTixvB9caQ==\",\n    \"key\": \"AqYNXywEiqEOKCBUmKIjXYOm6UfV\"\n}"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "activation",
+              "item": [
+                {
+                  "name": "process",
+                  "item": [
+                    {
+                      "name": "progress",
+                      "item": [
+                        {
+                          "name": "save",
+                          "item": [
+                            {
+                              "name": "Save activation progress",
+                              "event": [
+                                {
+                                  "listen": "prerequest",
+                                  "script": {
+                                    "exec": [
+                                      "// \u2500\u2500 Pre-request Script \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+                                      "",
+                                      "// \u2500\u2500 1. Account Preference \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+                                      "pm.environment.set('accountType',        'Bank-in-the-Box');",
+                                      "pm.environment.set('productCode',        '500');",
+                                      "pm.environment.set('currency',           'NGN');",
+                                      "pm.environment.set('signatoryMandate',   'MULTI');",
+                                      "",
+                                      "// \u2500\u2500 2. Service Required \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+                                      "pm.environment.set('serviceRequired',    JSON.stringify([]));",
+                                      "",
+                                      "// \u2500\u2500 3. Uploaded Documents \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+                                      "const customerDocuments = [",
+                                      "    {",
+                                      "        documentType:       'Your passport photograph',",
+                                      "        uploadedDocumentId: 'customer/upload/a60f7cf9-9492-40b6-a76f-347d8fc12640',",
+                                      "    },",
+                                      "    {",
+                                      "        documentType:       'Memorandum and Article of Association',",
+                                      "        uploadedDocumentId: 'customer/upload/b9af1525-369f-4971-9818-45ba18580ced',",
+                                      "    },",
+                                      "    {",
+                                      "        documentType:       'Valid ID of each signatory',",
+                                      "        uploadedDocumentId: 'customer/upload/36af250a-fbd7-4ce9-ac6a-faab667746dd',",
+                                      "    },",
+                                      "    {",
+                                      "        documentType:       'A .jpeg format of your signature',",
+                                      "        uploadedDocumentId: 'customer/upload/036cef7f-98cb-4e8d-b76c-45b28e1c642f',",
+                                      "    },",
+                                      "    {",
+                                      "        documentType:       'Documentary evidence of address',",
+                                      "        uploadedDocumentId: 'customer/upload/02ea7bd9-5e87-4c6f-b554-8cda95e14cc2',",
+                                      "    },",
+                                      "    {",
+                                      "        documentType:       'Certificate of Incorporation / Business Registration',",
+                                      "        uploadedDocumentId: 'customer/upload/b9c885c4-0488-4595-b8c3-e719218055d7',",
+                                      "    },",
+                                      "];",
+                                      "",
+                                      "pm.environment.set('customerDocuments', JSON.stringify(customerDocuments));",
+                                      "",
+                                      "// \u2500\u2500 4. Agreements \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+                                      "const agreements = [",
+                                      "    {",
+                                      "        name:          'Account Creation',",
+                                      "        agreementType: 'ACCOUNT_CREATION',",
+                                      "        accepted:      true,",
+                                      "    },",
+                                      "    {",
+                                      "        name:          'Limit increase',",
+                                      "        agreementType: 'LIMIT_INCREASE',",
+                                      "        accepted:      true,",
+                                      "    },",
+                                      "    {",
+                                      "        name:          'Indemnity for anything',",
+                                      "        agreementType: 'INDEMNITY',",
+                                      "        accepted:      true,",
+                                      "    },",
+                                      "];",
+                                      "",
+                                      "pm.environment.set('agreements', JSON.stringify(agreements));",
+                                      "",
+                                      "// \u2500\u2500 Debug log (remove in production) \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+                                      "// console.log('[Pre-request] accountType      :', pm.environment.get('accountType'));",
+                                      "// console.log('[Pre-request] productCode      :', pm.environment.get('productCode'));",
+                                      "// console.log('[Pre-request] currency         :', pm.environment.get('currency'));",
+                                      "// console.log('[Pre-request] signatoryMandate :', pm.environment.get('signatoryMandate'));",
+                                      "// console.log('[Pre-request] customerDocuments:', pm.environment.get('customerDocuments'));",
+                                      "// console.log('[Pre-request] agreements       :', pm.environment.get('agreements'));"
+                                    ],
+                                    "type": "text/javascript",
+                                    "packages": {},
+                                    "requests": {}
+                                  }
+                                },
+                                {
+                                  "listen": "test",
+                                  "script": {
+                                    "exec": [
+                                      "// \u2500\u2500 6. Cleanup \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+                                      "const KEEP = new Set([",
+                                      "    'baseUrl', 'referer', 'origin',",
+                                      "    'authenticationType', 'deviceId', 'loginUsername', 'loginPassword', 'loginEmail', 'bvnOtp', 'emailOtp', 'deviceChannel', 'deviceOption',",
+                                      "]);",
+                                      "",
+                                      "const allVariables = pm.environment.toObject();",
+                                      "const cleared = [];",
+                                      "const kept = [];",
+                                      "",
+                                      "Object.keys(allVariables).forEach(key => {",
+                                      "    if (KEEP.has(key)) {",
+                                      "        kept.push(key);",
+                                      "    } else {",
+                                      "        pm.environment.unset(key);",
+                                      "        cleared.push(key);",
+                                      "    }",
+                                      "});",
+                                      "",
+                                      "console.log('[Cleanup] Kept    :', kept.join(', '));",
+                                      "console.log('[Cleanup] Cleared :', cleared.join(', '));",
+                                      "console.log(`[Cleanup] Done \u2014 ${cleared.length} removed, ${kept.length} kept.`);"
+                                    ],
+                                    "type": "text/javascript",
+                                    "packages": {},
+                                    "requests": {}
+                                  }
+                                }
+                              ],
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "*/*"
+                                  },
+                                  {
+                                    "key": "Referer",
+                                    "value": "{{referer}}",
+                                    "type": "text"
+                                  },
+                                  {
+                                    "key": "Origin",
+                                    "value": "{{origin}}",
+                                    "type": "text"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n    \"organizationId\": \"{{organizationId}}\",\n    \"bankOrganizationId\": \"{{bankOrganizationId}}\",\n    \"customerUserDetailDTO\": [\n        {\n            \"username\": \"{{username}}\",\n            \"firstName\": \"{{bvnFirstName}}\",\n            \"lastName\": \"{{bvnLastName}}\",\n            \"otherName\": \"\",\n            \"phoneNumber\": \"{{bvnPhoneNumber}}\",\n            \"email\": \"{{personalEmail}}\",\n            \"signUpType\": \"{{signUpType}}\",\n            \"assignedRole\": \"{{assignedRole}}\",\n            \"title\": \"{{title}}\",\n            \"dob\": \"{{bvnDob}}\",\n            \"address\": \"{{address}}\",\n            \"city\": \"{{city}}\",\n            \"state\": \"{{state}}\",\n            \"country\": \"{{country}}\",\n            \"stateOfOrigin\": \"{{stateOfOrigin}}\",\n            \"motherMaidenName\": \"{{motherMaidenName}}\",\n            \"occupation\": \"{{occupation}}\",\n            \"bvn\": \"{{bvn}}\",\n            \"bvnValidated\": true,\n            \"customerDocuments\": [\n                {\n                    \"documentType\": \"{{userDocumentTypeI}}\",\n                    \"documentNumber\": \"{{userDocumentNumber}}\",\n                    \"issueDate\": \"{{userDocumentIIssueDate}}\",\n                    \"expiryDate\": \"{{userDocumentIExpiryDate}}\",\n                    \"issueCountry\": \"{{country}}\",\n                    \"nonExpiry\": false,\n                    \"uploadedDocumentId\": \"{{uploadedDocumentTypeI}}\"\n                },\n                {\n                    \"documentType\": \"{{userDocumentTypeII}}\",\n                    \"documentNumber\": \"{{ninNumber}}\",\n                    \"issueDate\": \"{{ninIssueDate}}\",\n                    \"expiryDate\": \"\",\n                    \"issueCountry\": \"{{country}}\",\n                    \"nonExpiry\": true,\n                    \"uploadedDocumentId\": \"{{ninDocumentUpload}}\"\n                }\n            ]\n        }\n    ],\n    \"customerBusinessDetailDTO\": {\n        \"organizationName\": \"{{organizationName}}\",\n        \"organizationEmail\": \"{{orgEmail}}\",\n        \"organizationPhoneNumber\": \"{{orgPhone}}\",\n        \"registrationNumber\": \"{{regNumber}}\",\n        \"tin\": \"{{tin}}\",\n        \"registrationDate\": \"{{regDate}}\",\n        \"nature\": \"{{orgNature}}\",\n        \"address\": \"{{orgAddress}}\",\n        \"category\": \"{{orgCategory}}\"\n    },\n    \"customerAccountPreferenceDTO\": {\n        \"accountType\": \"{{accountType}}\",\n        \"productCode\": \"{{productCode}}\",\n        \"currency\": \"{{currency}}\",\n        \"signatoryMandate\": \"{{signatoryMandate}}\"\n    },\n    \"customerServiceRequiredDTO\": {\n        \"serviceRequired\": []\n    },\n    \"customerUploadedDocumentDTO\": {\n        \"customerDocuments\": {{customerDocuments}}\n    },\n    \"customerAgreementDTO\": {\n        \"agreements\": {{agreements}}\n    },\n    \"customerActivationStatus\": \"{{customerActivationStatus}}\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{customer_service_base_url}}/api/v1/activation/process/progress/save",
+                                  "host": [
+                                    "{{customer_service_base_url}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "activation",
+                                    "process",
+                                    "progress",
+                                    "save"
+                                  ]
+                                },
+                                "description": "This API is used to save activation progress."
+                              },
+                              "response": [
+                                {
+                                  "name": "Save activation progress",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "*/*"
+                                      },
+                                      {
+                                        "key": "Referer",
+                                        "value": "{{referer}}",
+                                        "type": "text"
+                                      },
+                                      {
+                                        "key": "Origin",
+                                        "value": "{{origin}}",
+                                        "type": "text"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n    \"organizationId\": \"{{organizationId}}\",\n    \"bankOrganizationId\": \"{{bankOrganizationId}}\",\n    \"customerUserDetailDTO\": [\n        {\n            \"username\": \"{{username}}\",\n            \"firstName\": \"{{bvnFirstName}}\",\n            \"lastName\": \"{{bvnLastName}}\",\n            \"otherName\": \"\",\n            \"phoneNumber\": \"{{bvnPhoneNumber}}\",\n            \"email\": \"{{personalEmail}}\",\n            \"signUpType\": \"{{signUpType}}\",\n            \"assignedRole\": \"{{assignedRole}}\",\n            \"title\": \"{{title}}\",\n            \"dob\": \"{{bvnDob}}\",\n            \"address\": \"{{address}}\",\n            \"city\": \"{{city}}\",\n            \"state\": \"{{state}}\",\n            \"country\": \"{{country}}\",\n            \"stateOfOrigin\": \"{{stateOfOrigin}}\",\n            \"motherMaidenName\": \"{{motherMaidenName}}\",\n            \"occupation\": \"{{occupation}}\",\n            \"bvn\": \"{{bvn}}\",\n            \"bvnValidated\": true,\n            \"customerDocuments\": [\n                {\n                    \"documentType\": \"{{userDocumentTypeI}}\",\n                    \"documentNumber\": \"{{userDocumentNumber}}\",\n                    \"issueDate\": \"{{userDocumentIIssueDate}}\",\n                    \"expiryDate\": \"{{userDocumentIExpiryDate}}\",\n                    \"issueCountry\": \"{{country}}\",\n                    \"nonExpiry\": false,\n                    \"uploadedDocumentId\": \"{{uploadedDocumentTypeI}}\"\n                },\n                {\n                    \"documentType\": \"{{userDocumentTypeII}}\",\n                    \"documentNumber\": \"{{ninNumber}}\",\n                    \"issueDate\": \"{{ninIssueDate}}\",\n                    \"expiryDate\": \"\",\n                    \"issueCountry\": \"{{country}}\",\n                    \"nonExpiry\": true,\n                    \"uploadedDocumentId\": \"{{ninDocumentUpload}}\"\n                }\n            ]\n        }\n    ],\n    \"customerBusinessDetailDTO\": {\n        \"organizationName\": \"{{organizationName}}\",\n        \"organizationEmail\": \"{{orgEmail}}\",\n        \"organizationPhoneNumber\": \"{{orgPhone}}\",\n        \"registrationNumber\": \"{{regNumber}}\",\n        \"tin\": \"{{tin}}\",\n        \"registrationDate\": \"{{regDate}}\",\n        \"nature\": \"{{orgNature}}\",\n        \"address\": \"{{orgAddress}}\",\n        \"category\": \"{{orgCategory}}\"\n    },\n    \"customerAccountPreferenceDTO\": {\n        \"accountType\": \"{{accountType}}\",\n        \"productCode\": \"{{productCode}}\",\n        \"currency\": \"{{currency}}\",\n        \"signatoryMandate\": \"{{signatoryMandate}}\"\n    },\n    \"customerServiceRequiredDTO\": {\n        \"serviceRequired\": []\n    },\n    \"customerUploadedDocumentDTO\": {\n        \"customerDocuments\": {{customerDocuments}}\n    },\n    \"customerAgreementDTO\": {\n        \"agreements\": {{agreements}}\n    },\n    \"customerActivationStatus\": \"{{customerActivationStatus}}\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/activation/process/progress/save",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "activation",
+                                        "process",
+                                        "progress",
+                                        "save"
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "Text",
+                                  "header": [
+                                    {
+                                      "key": "Server",
+                                      "value": "nginx/1.24.0 (Ubuntu)"
+                                    },
+                                    {
+                                      "key": "Date",
+                                      "value": "Fri, 22 May 2026 18:25:44 GMT"
+                                    },
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    },
+                                    {
+                                      "key": "Content-Length",
+                                      "value": "180"
+                                    },
+                                    {
+                                      "key": "Connection",
+                                      "value": "keep-alive"
+                                    },
+                                    {
+                                      "key": "Access-Control-Allow-Origin",
+                                      "value": "*"
+                                    },
+                                    {
+                                      "key": "Access-Control-Allow-Methods",
+                                      "value": "POST,GET,PUT,DELETE,PATCH,HEAD"
+                                    },
+                                    {
+                                      "key": "Access-Control-Allow-Headers",
+                                      "value": "Content-Type,Access-Control-Allow-Headers,Access-Control-Allow-Origin,Access-Control-Expose-Headers,Content-Disposition,Authorization,Access-Control-Allow-Methods,X-Requested-With,request-id,x-request-encrypted"
+                                    },
+                                    {
+                                      "key": "Access-Control-Expose-Headers",
+                                      "value": "Content-Disposition,response-id,File-type"
+                                    },
+                                    {
+                                      "key": "Access-Control-Allow-Credentials",
+                                      "value": "true"
+                                    },
+                                    {
+                                      "key": "X-Content-Type-Options",
+                                      "value": "nosniff"
+                                    },
+                                    {
+                                      "key": "X-XSS-Protection",
+                                      "value": "0"
+                                    },
+                                    {
+                                      "key": "Cache-Control",
+                                      "value": "no-cache, no-store, max-age=0, must-revalidate"
+                                    },
+                                    {
+                                      "key": "Pragma",
+                                      "value": "no-cache"
+                                    },
+                                    {
+                                      "key": "Expires",
+                                      "value": "0"
+                                    },
+                                    {
+                                      "key": "X-Frame-Options",
+                                      "value": "DENY"
+                                    },
+                                    {
+                                      "key": "response-id",
+                                      "value": "204HAL26MDR305TRXI22DG7B"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "body": "{\n    \"response\": \"J5hcHLJcOWTDmXUIujAlKwnSv+cr9A5kPqEpFntxrCBqVKhT95eSnzBLfugeQ3nXOhagg9i6LkITZvstXSJBdUOTvM0ZTBCVtUdWSIVUaZbmcUFotds1avkqdeCMt4jp\",\n    \"key\": \"7E2xhyb4SCXePQAyv6ndcJ3rjMYA\"\n}"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          "/**\r",
+          " * Postman Collection Pre-request Script \u2014 Lucid Gateways\r",
+          " */\r",
+          "\r",
+          "\r",
+          "// \u2500\u2500 0. Data Builder \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+          "const url = pm.request.url.toString();\r",
+          "\r",
+          "if (url.includes('/send-bvn-verification-code')) {\r",
+          "    // Generate a random 11-digit BVN (Nigerian format: starts 1-9, then 10 digits)\r",
+          "    const firstDigit = Math.floor(Math.random() * 9) + 1;\r",
+          "    let rest = '';\r",
+          "    for (let i = 0; i < 10; i++) rest += Math.floor(Math.random() * 10);\r",
+          "    const randomBvn = `${firstDigit}${rest}`;\r",
+          "\r",
+          "    pm.environment.set('bvn', randomBvn);\r",
+          "    // console.log('[Pre-request] Generated random BVN:', randomBvn);\r",
+          "}\r",
+          "\r",
+          "// Encryption logic\r",
+          "var CryptoJS = require('crypto-js');\r",
+          "\r",
+          "const CHARACTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';\r",
+          "\r",
+          "function randomAlphanumeric(length) {\r",
+          "    let result = '';\r",
+          "    for (let i = 0; i < length; i++) {\r",
+          "        result += CHARACTERS[Math.floor(Math.random() * CHARACTERS.length)];\r",
+          "    }\r",
+          "    return result;\r",
+          "}\r",
+          "\r",
+          "function generateRequestId(key16) {\r",
+          "    // 4\u00d74 split, prepend 2 random chars to each \u2192 24 chars total\r",
+          "    const parts = [\r",
+          "        key16.substring(0, 4),\r",
+          "        key16.substring(4, 8),\r",
+          "        key16.substring(8, 12),\r",
+          "        key16.substring(12, 16),\r",
+          "    ];\r",
+          "    return parts.map(p => randomAlphanumeric(2) + p).join('');\r",
+          "}\r",
+          "\r",
+          "// \u2500\u2500 1. Read raw JSON body \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+          "const rawBody = pm.request.body && pm.request.body.raw;\r",
+          "if (!rawBody || !rawBody.trim()) {\r",
+          "    // console.log('[Pre-request] No raw body found \u2014 skipping encryption.');\r",
+          "    return;\r",
+          "}\r",
+          "\r",
+          "// Resolve {{var}} placeholders against environment/collection/global vars\r",
+          "const resolvedBody = pm.variables.replaceIn(rawBody);\r",
+          "\r",
+          "let parsedBody;\r",
+          "try {\r",
+          "    parsedBody = JSON.parse(resolvedBody);\r",
+          "} catch (e) {\r",
+          "    // console.error('[Pre-request] Body is not valid JSON \u2014 skipping:', e.message);\r",
+          "    // console.error('[Pre-request] Resolved body was:', resolvedBody);\r",
+          "    // return;\r",
+          "}\r",
+          "const plaintext = JSON.stringify(parsedBody);\r",
+          "\r",
+          "// \u2500\u2500 2. Generate fresh 16-char AES key \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+          "var aesKey = randomAlphanumeric(16);\r",
+          "\r",
+          "// \u2500\u2500 3. Embed key into request-id header \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+          "const requestId = generateRequestId(aesKey);\r",
+          "pm.request.headers.upsert({ key: 'request-id', value: requestId });\r",
+          "\r",
+          "// \u2500\u2500 4. AES-CBC encrypt, IV = key, zero-padding \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+          "const keyWA = CryptoJS.enc.Utf8.parse(aesKey);\r",
+          "const ivWA = CryptoJS.enc.Utf8.parse(aesKey);\r",
+          "const plaintextWA = CryptoJS.enc.Utf8.parse(plaintext);\r",
+          "\r",
+          "const encrypted = CryptoJS.AES.encrypt(plaintextWA, keyWA, {\r",
+          "    iv: ivWA,\r",
+          "    mode: CryptoJS.mode.CBC,\r",
+          "    padding: CryptoJS.pad.ZeroPadding,\r",
+          "});\r",
+          "\r",
+          "const encryptedB64 = encrypted.toString(); // already base64\r",
+          "\r",
+          "// \u2500\u2500 5. Replace outgoing body \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+          "pm.request.body.update(JSON.stringify({ request: encryptedB64 }));\r",
+          "\r",
+          "// \u2500\u2500 6. Debug \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+          "// console.log('[Pre-request] AES Key     :', aesKey);\r",
+          "// console.log('[Pre-request] request-id  :', requestId);\r",
+          "// console.log('[Pre-request] Plaintext   :', plaintext);\r",
+          "// console.log('[Pre-request] Ciphertext  :', encryptedB64.substring(0, 60) + '...');"
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          "/**\r",
+          " * Postman Collection Tests Script \u2014 Lucid Gateway\r",
+          " *\r",
+          " * Place this in: Collection \u2192 Scripts \u2192 Post-response\r",
+          " *\r",
+          " * How it works:\r",
+          " *   - Reads the response-id header to extract the AES key\r",
+          " *   - Decrypts the \"response\" field from the JSON response body\r",
+          " *   - Stores the plaintext in DECRYPTED_RESPONSE (environment variable)\r",
+          " *   - Renders the decrypted result in the Visualizer tab\r",
+          " *\r",
+          " * Decryption scheme:\r",
+          " *   - response-id is 24 chars: [2 noise][4 key][2 noise][4 key][2 noise][4 key][2 noise][4 key]\r",
+          " *   - AES key = chars at positions 2-5, 8-11, 14-17, 20-23\r",
+          " *   - Algorithm: AES/CBC/NoPadding, IV = key bytes\r",
+          " *   - Response envelope: { \"response\": \"<base64-ciphertext>\", \"key\": \"<ignored>\" }\r",
+          " */\r",
+          "\r",
+          "function extractKeyFromResponseId(responseId24) {\r",
+          "    return (\r",
+          "        responseId24.substring(2, 6) +\r",
+          "        responseId24.substring(8, 12) +\r",
+          "        responseId24.substring(14, 18) +\r",
+          "        responseId24.substring(20, 24)\r",
+          "    );\r",
+          "}\r",
+          "\r",
+          "var rawText = pm.response.text();\r",
+          "\r",
+          "// console.log('[Post-response] Status      :', pm.response.code, pm.response.status);\r",
+          "// console.log('[Post-response] Content-Type:', pm.response.headers.get('Content-Type'));\r",
+          "// console.log('[Post-response] Raw body    :', rawText.substring(0, 200) + (rawText.length > 200 ? '...' : ''));\r",
+          "\r",
+          "var responseId = pm.response.headers.get('response-id');\r",
+          "\r",
+          "\r",
+          "\r",
+          "\r",
+          "if (!responseId) {\r",
+          "    // console.log('[Post-response] No response-id header \u2014 response is not encrypted.');\r",
+          "    pm.environment.set('DECRYPTED_RESPONSE', rawText);\r",
+          "    pm.test('Response received (unencrypted)', () => pm.expect(pm.response.code).to.be.lessThan(500));\r",
+          "    return;\r",
+          "}\r",
+          "\r",
+          "if (responseId.length !== 24) {\r",
+          "    // console.error('[Post-response] response-id has unexpected length:', responseId.length, '\u2014 expected 24.');\r",
+          "    pm.environment.set('DECRYPTED_RESPONSE', rawText);\r",
+          "    return;\r",
+          "}\r",
+          "\r",
+          "var aesKey = extractKeyFromResponseId(responseId);\r",
+          "// console.log('[Post-response] response-id :', responseId);\r",
+          "// console.log('[Post-response] AES key     :', aesKey);\r",
+          "\r",
+          "let respJson;\r",
+          "try {\r",
+          "    respJson = JSON.parse(rawText);\r",
+          "} catch (e) {\r",
+          "    // console.log('[Post-response] Body is not JSON \u2014 skipping decryption.');\r",
+          "    pm.environment.set('DECRYPTED_RESPONSE', rawText);\r",
+          "    return;\r",
+          "}\r",
+          "\r",
+          "var cipherB64 = respJson.response;\r",
+          "if (!cipherB64) {\r",
+          "    // console.log('[Post-response] No \"response\" field in body \u2014 skipping decryption.');\r",
+          "    pm.environment.set('DECRYPTED_RESPONSE', rawText);\r",
+          "    return;\r",
+          "}\r",
+          "\r",
+          "try {\r",
+          "    const key = CryptoJS.enc.Utf8.parse(aesKey);\r",
+          "    const iv = CryptoJS.enc.Utf8.parse(aesKey);\r",
+          "\r",
+          "    const decrypted = CryptoJS.AES.decrypt(cipherB64, key, {\r",
+          "        iv,\r",
+          "        mode: CryptoJS.mode.CBC,\r",
+          "        padding: CryptoJS.pad.NoPadding,\r",
+          "    });\r",
+          "\r",
+          "    let plaintext = decrypted.toString(CryptoJS.enc.Utf8);\r",
+          "    plaintext = plaintext.replace(/\\u0000+$/, '').trim();\r",
+          "\r",
+          "    // console.log('[Post-response] Decrypted   :', plaintext);\r",
+          "    pm.environment.set('DECRYPTED_RESPONSE', plaintext);\r",
+          "\r",
+          "    let formattedResponse = plaintext;\r",
+          "    let jsonResponse = null;\r",
+          "\r",
+          "    try {\r",
+          "        jsonResponse = JSON.parse(plaintext);\r",
+          "        formattedResponse = JSON.stringify(jsonResponse, null, 2);\r",
+          "        pm.environment.set('DECRYPTED_RESPONSE_JSON', formattedResponse);\r",
+          "        // console.log('[Post-response] Parsed as JSON successfully.');\r",
+          "    } catch (_) {\r",
+          "        // console.log('[Post-response] Decrypted value is not JSON \u2014 storing as plain text.');\r",
+          "    }\r",
+          "\r",
+          "    const template = `\r",
+          "    <html>\r",
+          "    <head>\r",
+          "      <style>\r",
+          "        * { box-sizing: border-box; margin: 0; padding: 0; }\r",
+          "        body {\r",
+          "          font-family: 'Menlo', 'Consolas', monospace;\r",
+          "          font-size: 13px;\r",
+          "          padding: 20px;\r",
+          "          background: #1e1e1e;\r",
+          "          color: #d4d4d4;\r",
+          "        }\r",
+          "        .badge {\r",
+          "          display: inline-block;\r",
+          "          padding: 4px 10px;\r",
+          "          border-radius: 4px;\r",
+          "          font-weight: bold;\r",
+          "          margin-bottom: 14px;\r",
+          "        }\r",
+          "        .success { background: #2d5a2d; color: #98c379; }\r",
+          "        .error   { background: #5a2d2d; color: #e06c75; }\r",
+          "        h3 { color: #61afef; margin-bottom: 10px; }\r",
+          "        pre {\r",
+          "          background: #252526;\r",
+          "          border: 1px solid #3c3c3c;\r",
+          "          border-radius: 6px;\r",
+          "          padding: 14px;\r",
+          "          white-space: pre-wrap;\r",
+          "          word-wrap: break-word;\r",
+          "          line-height: 1.5;\r",
+          "        }\r",
+          "      </style>\r",
+          "    </head>\r",
+          "    <body>\r",
+          "      <div class=\"badge {{statusClass}}\">{{status}}</div>\r",
+          "      <h3>Decrypted Response</h3>\r",
+          "      <pre>{{response}}</pre>\r",
+          "    </body>\r",
+          "    </html>\r",
+          "  `;\r",
+          "\r",
+          "    pm.visualizer.set(template, {\r",
+          "        response: formattedResponse,\r",
+          "        status: pm.response.code + ' ' + pm.response.status,\r",
+          "        statusClass: pm.response.code < 400 ? 'success' : 'error',\r",
+          "    });\r",
+          "\r",
+          "    // \u2500\u2500 Universal assertions (run for every request in the collection) \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r",
+          "    pm.test('Status code is 2xx', () => {\r",
+          "        pm.expect(pm.response.code).to.be.within(200, 299);\r",
+          "    });\r",
+          "\r",
+          "\r",
+          "} catch (err) {\r",
+          "    // console.error('[Post-response] Decryption error:', err.message);\r",
+          "    // console.error('[Post-response] AES key used    :', aesKey);\r",
+          "    // console.error('[Post-response] response-id     :', responseId);\r",
+          "    pm.environment.set('DECRYPTED_RESPONSE', 'DECRYPTION_FAILED: ' + err.message);\r",
+          "\r",
+          "    pm.test('Decryption did not throw', () => {\r",
+          "        pm.expect.fail('Decryption error: ' + err.message);\r",
+          "    });\r",
+          "}\r",
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "name",
+      "value": "string"
+    },
+    {
+      "key": "requestId",
+      "value": "6668"
+    },
+    {
+      "key": "currency",
+      "value": ""
+    },
+    {
+      "key": "beneficiaryAccountNumber",
+      "value": ""
+    },
+    {
+      "key": "beneficiaryAccountName",
+      "value": ""
+    },
+    {
+      "key": "bearerToken",
+      "value": ""
+    },
+    {
+      "key": "beneficiaryBankCode",
+      "value": ""
+    },
+    {
+      "key": "beneficiaryBankName",
+      "value": ""
+    },
+    {
+      "key": "pinValidatedCode",
+      "value": ""
+    },
+    {
+      "key": "intraBeneficiaryAccountNumber",
+      "value": ""
+    },
+    {
+      "key": "intraBeneficiaryAccountName",
+      "value": ""
+    }
+  ]
+}
