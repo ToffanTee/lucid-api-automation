@@ -14,7 +14,7 @@ that comes with it.
 ```
 api-testing/
 ├── collections/
-│   ├── Onboarding.postman_collection.json    # onboarding + new-user login + activation
+│   ├── Onboarding&Activation.postman_collection.json    # onboarding + new-user login + activation
 │   ├── Account.postman_collection.json       # login (existing user) + account
 │   ├── Transfers.postman_collection.json     # login (existing user) + transferv1
 │   ├── BillsPayment.postman_collection.json  # login (existing user) + bills-payment
@@ -80,7 +80,7 @@ newman run collections/Card.postman_collection.json \
 
 | Collection | Contains | Login |Notes |
 |---|---|---|---|
-| `Onboarding.postman_collection.json` | `onboarding` (BVN/email OTP verification, user invite), `authentication` (login), `activation` (activation progress) | Uses the **newly-registered user** created by `onboarding` — that's the whole point of this collection, it can't use an existing-user login instead | These three folders are a strict sequential chain, not three independent domains — see note below |
+| `Onboarding&Activation.postman_collection.json` | `onboarding` (BVN/email OTP verification, user invite), `authentication` (login), `activation` (activation progress) | Uses the **newly-registered user** created by `onboarding` — that's the whole point of this collection, it can't use an existing-user login instead | These three folders are a strict sequential chain, not three independent domains — see note below |
 | `Account.postman_collection.json` | `account` (customer account retrieval, transaction history) | Embedded `authentication` folder, **existing user** (reused from the original `authentication Copy`) | Runs standalone |
 | `Transfers.postman_collection.json` | `transferv1` (inter-bank and intra-bank transfers, each in three variants: immediate, later, recurring) | Embedded `authentication` folder, existing user | See "Transfer flow order" below — this is the most script-heavy collection. Runs standalone |
 | `BillsPayment.postman_collection.json` | `bills-payment` (airtime and data bill payments, same three variants) | Embedded `authentication` folder, existing user | Mirrors the transferv1 later/recurring pattern. Each of its six sub-folders now starts with its own `accounts retrieve-all` step too (matching `transferv1`), so `senderAccountNumber` gets fetched fresh instead of relying on `Transfers` having run first. Runs standalone |
@@ -91,7 +91,7 @@ unchanged from before the split — same URLs (`{{customer_service_base_url}}`,
 `{{transfer_service_base_url}}`, `{{vas_service_base_url}}`,
 `{{card_service_base_url}}`), same scripts, same variable names.
 
-**Why `Onboarding.postman_collection.json` isn't split further:** `onboarding`,
+**Why `Onboarding&Activation.postman_collection.json` isn't split further:** `onboarding`,
 `authentication`, and `activation` aren't independent domains — `activation`
 acts on the user that `authentication` just logged in, which is the same
 user `onboarding` just created. Splitting them into three separate
@@ -260,7 +260,7 @@ domain" above), and each has exactly one canonical source of truth under
 
 | Canonical source | Injected into | Where |
 |---|---|---|
-| `shared-scripts/decrypt-encrypt.event.json` | Onboarding, Account, Transfers, BillsPayment, Card | Collection root `event` |
+| `shared-scripts/decrypt-encrypt.event.json` | Onboarding & Activation, Account, Transfers, BillsPayment, Card | Collection root `event` |
 | `shared-scripts/existing-user-login.folder.json` | Account, Transfers, BillsPayment, Card (**not** Onboarding) | The `authentication` folder |
 | `shared-scripts/accounts-retrieve-all.folder.json` | Every `transferv1` sub-folder (Transfers), every `bills-payment` sub-folder (BillsPayment) | The `accounts retrieve-all` folder, wherever it appears |
 

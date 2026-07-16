@@ -11,13 +11,13 @@
 
     "test:all": "npm run test:onboarding && npm run test:account && npm run test:transfers && npm run test:bills && npm run test:card",
 
-    "test:onboarding": "newman run collections/Onboarding.postman_collection.json -e environments/Dev.postman_environment.json -g globals/globals.postman_globals.json -r cli,htmlextra --reporter-htmlextra-export reports/onboarding-report.html",
+    "test:onboarding": "newman run \"collections/Onboarding&Activation.postman_collection.json\" -e environments/Dev.postman_environment.json -g globals/globals.postman_globals.json -r cli,htmlextra --reporter-htmlextra-export reports/onboarding-report.html",
     "test:account": "newman run collections/Account.postman_collection.json -e environments/Dev.postman_environment.json -g globals/globals.postman_globals.json -r cli,htmlextra --reporter-htmlextra-export reports/account-report.html",
     "test:transfers": "newman run collections/Transfers.postman_collection.json -e environments/Dev.postman_environment.json -g globals/globals.postman_globals.json -r cli,htmlextra --reporter-htmlextra-export reports/transfers-report.html",
     "test:bills": "newman run collections/BillsPayment.postman_collection.json -e environments/Dev.postman_environment.json -g globals/globals.postman_globals.json -r cli,htmlextra --reporter-htmlextra-export reports/bills-report.html",
     "test:card": "newman run collections/Card.postman_collection.json -e environments/Dev.postman_environment.json -g globals/globals.postman_globals.json -r cli,htmlextra --reporter-htmlextra-export reports/card-report.html",
 
-    "test:onboarding:qa": "newman run collections/Onboarding.postman_collection.json -e environments/QA.postman_environment.json -g globals/globals.postman_globals.json -r cli,htmlextra --reporter-htmlextra-export reports/onboarding-qa-report.html",
+    "test:onboarding:qa": "newman run \"collections/Onboarding&Activation.postman_collection.json\" -e environments/QA.postman_environment.json -g globals/globals.postman_globals.json -r cli,htmlextra --reporter-htmlextra-export reports/onboarding-qa-report.html",
     "test:account:qa": "newman run collections/Account.postman_collection.json -e environments/QA.postman_environment.json -g globals/globals.postman_globals.json -r cli,htmlextra --reporter-htmlextra-export reports/account-qa-report.html",
     "test:transfers:qa": "newman run collections/Transfers.postman_collection.json -e environments/QA.postman_environment.json -g globals/globals.postman_globals.json -r cli,htmlextra --reporter-htmlextra-export reports/transfers-qa-report.html",
     "test:bills:qa": "newman run collections/BillsPayment.postman_collection.json -e environments/QA.postman_environment.json -g globals/globals.postman_globals.json -r cli,htmlextra --reporter-htmlextra-export reports/bills-qa-report.html",

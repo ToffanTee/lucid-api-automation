@@ -5,7 +5,7 @@
       "description": "AES encryption/decryption pre-request + test scripts, at the collection root",
       "source": "shared-scripts/decrypt-encrypt.event.json",
       "collections": [
-        "Onboarding",
+        "Onboarding&Activation",
         "Account",
         "Transfers",
         "BillsPayment",
@@ -14,7 +14,7 @@
     },
     {
       "type": "named-folder",
-      "description": "Existing-user login, embedded at the top of collections that need to authenticate independently. Deliberately excludes Onboarding.postman_collection.json — its 'authentication' folder is the different new-user login variant and must never be overwritten by this target.",
+      "description": "Existing-user login, embedded at the top of collections that need to authenticate independently. Deliberately excludes Onboarding&Activation.postman_collection.json — its 'authentication' folder is the different new-user login variant and must never be overwritten by this target.",
       "folderName": "authentication",
       "source": "shared-scripts/existing-user-login.folder.json",
       "collections": [
