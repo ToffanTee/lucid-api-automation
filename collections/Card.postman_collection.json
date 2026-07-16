@@ -1,9 +1,10 @@
 {
   "info": {
-    "_postman_id": "acef0e39-0312-4a60-8e14-419394caf1be",
+    "_postman_id": "efd74652-1d71-4f5f-bcbd-e3de86591d10",
     "name": "Lucid - Card",
     "description": "Card configuration retrieval and card requests. Includes its own login step (existing user) so it can run independently of the Onboarding & Activation collection.",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "28463157"
   },
   "item": [
     {
@@ -1704,6 +1705,62 @@
                       "item": [
                         {
                           "name": "Create card request",
+                          "event": [
+                            {
+                              "listen": "test",
+                              "script": {
+                                "exec": [
+                                  "// ── Request Successfully Treated — Test Script ───────────────────────────",
+                                  "",
+                                  "const plaintext = pm.environment.get('DECRYPTED_RESPONSE');",
+                                  "let json;",
+                                  "",
+                                  "// ── 0. Parse decrypted response ──────────────────────────────────────────",
+                                  "try {",
+                                  "    json = JSON.parse(plaintext);",
+                                  "} catch (e) {",
+                                  "    pm.test('Response is valid JSON', () =>",
+                                  "        pm.expect.fail('Could not parse decrypted response: ' + e.message)",
+                                  "    );",
+                                  "    return;",
+                                  "}",
+                                  "",
+                                  "// ── 1. TOP-LEVEL ENVELOPE ─────────────────────────────────────────────────",
+                                  "",
+                                  "pm.test(\"Status code is 200\", function () {",
+                                  "    pm.response.to.have.status(200);",
+                                  "});",
+                                  "",
+                                  "pm.test(\"Response time is within acceptable range\", function () {",
+                                  "    pm.expect(pm.response.responseTime).to.be.below(3000);",
+                                  "});",
+                                  "",
+                                  "pm.test(\"Envelope has required top-level keys\", function () {",
+                                  "    pm.expect(json).to.have.all.keys(\"message\", \"success\", \"data\", \"errors\");",
+                                  "});",
+                                  "",
+                                  "pm.test(\"message is 'Request Successfully Treated'\", function () {",
+                                  "    pm.expect(json.message).to.eql(\"Request Successfully Treated\");",
+                                  "});",
+                                  "",
+                                  "pm.test(\"success flag is true\", function () {",
+                                  "    pm.expect(json.success).to.be.true;",
+                                  "});",
+                                  "",
+                                  "pm.test(\"data is null\", function () {",
+                                  "    pm.expect(json.data).to.be.null;",
+                                  "});",
+                                  "",
+                                  "pm.test(\"errors is null on successful response\", function () {",
+                                  "    pm.expect(json.errors).to.be.null;",
+                                  "});"
+                                ],
+                                "type": "text/javascript",
+                                "packages": {},
+                                "requests": {}
+                              }
+                            }
+                          ],
                           "request": {
                             "method": "POST",
                             "header": [

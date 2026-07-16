@@ -1,0 +1,15 @@
+# Use this workspace to collaborate
+workspace:
+  id: ""
+
+localResources:
+  collections:
+    - ../collections/Account.postman_collection.json
+    - ../collections/BillsPayment.postman_collection.json
+    - ../collections/Card.postman_collection.json
+    - ../collections/Onboarding.postman_collection.json
+    - ../collections/Transfers.postman_collection.json
+  environments:
+    - ../environments/Dev.postman_environment.json
+    - ../environments/QA.postman_environment.json
+    - ../environments/UAT.postman_environment.json
